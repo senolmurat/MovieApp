@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MovieApp
 //
-//  Created by Murat ŞENOL on 31.05.2022.
+//  Created by Murat ŞENOL on 30.05.2022.
 //
 
 import UIKit
@@ -11,10 +11,11 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 

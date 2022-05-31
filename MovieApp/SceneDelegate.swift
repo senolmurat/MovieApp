@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  MovieApp
 //
-//  Created by Murat ŞENOL on 31.05.2022.
+//  Created by Murat ŞENOL on 30.05.2022.
 //
 
 import UIKit
