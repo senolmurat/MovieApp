@@ -8,47 +8,64 @@
 import UIKit
 
 class MovieViewController: UIViewController {
-
+    
     @IBOutlet weak var moviesTabBarItem: UITabBarItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var movieList : [MovieListResult] = []
-    var totalMovieCount: Int?
-    var MovieListNextPageURL: String?
-    var MovieListPrevPageURL: String?
+    
+    private let movieService : MovieServiceProtocol = MovieService()
+    private var movieList : [MovieListResult] = []
+    private var pageCounter : Int = 1
+    private var totalMovieCount: Int?
+    private var MovieListNextPageURL: String?
+    private var MovieListPrevPageURL: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
+        tableView.dataSource = self
         
         moviesTabBarItem.title = "Movies"
         moviesTabBarItem.image = UIImage(systemName: "film")
         moviesTabBarItem.selectedImage = UIImage(systemName: "film")
         
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
+        
+        movieService.getPopular(page: pageCounter){ result in
+            switch result {
+            case .success(let response):
+                self.pageCounter += 1
+                self.movieList.append(contentsOf: response.results)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }
 
 
 extension MovieViewController: UITableViewDataSource{
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieList.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = movieList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.MovieListCellIdentifier, for: indexPath) as! MovieCell
         cell.configureMovie(with: movie)
         return cell
     }
-
+    
 }
 
 //MARK: - TableView Delegate Methods
@@ -67,14 +84,14 @@ extension MovieViewController: UITableViewDelegate{
                 //AlertManager.showLoadingIndicator(in: self)
                 AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
                 
-                if let url = characterListNextPageURL{
-                    let queryItems = URLComponents(string: url)?.queryItems
-                    if let pageItem = queryItems?.filter({$0.name == "page"}).first{
-                        if let pageString = pageItem.value {
-                            if let page = Int(pageString){
-                                dataManager.fetchAllCharacters(withPage: Int(page))
-                            }
-                        }
+                movieService.getPopular(page: pageCounter){ result in
+                    switch result {
+                    case .success(let response):
+                        self.pageCounter += 1
+                        self.movieList.append(contentsOf: response.results)
+                        self.tableView.reloadData()
+                    case .failure(let error):
+                        print(error)
                     }
                 }
             }

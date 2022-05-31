@@ -16,6 +16,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +46,7 @@ class MovieCell: UITableViewCell {
         
         movieNameLabel.text = movie.title
         genreLabel.text = movie.genresCSV
+        overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
         releaseDateLabel.text = movie.releaseDate
         
@@ -66,6 +68,7 @@ class MovieCell: UITableViewCell {
         
         movieNameLabel.text = movie.title
         //TODO make genreCSV for MovieListResult
+        overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
         releaseDateLabel.text = movie.releaseDate
         

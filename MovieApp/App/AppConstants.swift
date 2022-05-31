@@ -9,8 +9,8 @@ import Foundation
 
 struct K {
     
-    static let MovieListCellIdentifier = "CharacterCell"
-    static let MovieListCellNibName = "CharacterCell"
+    static let MovieListCellIdentifier = "MovieCell"
+    static let MovieListCellNibName = "MovieCell"
     
     struct BrandColors {
         static let purple = "BrandPurple"

@@ -20,7 +20,6 @@
 		6F1D0D432845164F00E24E53 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D422845164F00E24E53 /* Collection.swift */; };
 		6F1D0D452845168500E24E53 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D442845168500E24E53 /* Genre.swift */; };
 		6F1D0D47284516AB00E24E53 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D46284516AB00E24E53 /* Company.swift */; };
-		6F1D0D4928451BD800E24E53 /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D4828451BD800E24E53 /* TV.swift */; };
 		6F1D0D4B28451EB600E24E53 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D4A28451EB600E24E53 /* People.swift */; };
 		6F88DA6C2846088C00A63818 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA6B2846088C00A63818 /* MovieList.swift */; };
 		6F88DA6F284609A800A63818 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA6D284609A800A63818 /* MovieCell.swift */; };
@@ -32,6 +31,7 @@
 		6F88DA7D284650AF00A63818 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA7C284650AF00A63818 /* MovieDetailViewController.swift */; };
 		6F88DA7F2846513F00A63818 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA7E2846513F00A63818 /* AlertManager.swift */; };
 		6F88DA842846553300A63818 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA832846553300A63818 /* Network.swift */; };
+		6F96C02C284668AC00002879 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F96C02B284668AC00002879 /* MovieService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +51,6 @@
 		6F1D0D422845164F00E24E53 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		6F1D0D442845168500E24E53 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		6F1D0D46284516AB00E24E53 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
-		6F1D0D4828451BD800E24E53 /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		6F1D0D4A28451EB600E24E53 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		6F88DA6B2846088C00A63818 /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
 		6F88DA6D284609A800A63818 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		6F88DA7C284650AF00A63818 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		6F88DA7E2846513F00A63818 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		6F88DA832846553300A63818 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		6F96C02B284668AC00002879 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +168,7 @@
 		6F88DA852846553B00A63818 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				6F96C02B284668AC00002879 /* MovieService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -175,7 +176,6 @@
 		6F88DA862846554000A63818 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6F1D0D4828451BD800E24E53 /* TV.swift */,
 				6F1D0D422845164F00E24E53 /* Collection.swift */,
 				6F1D0D46284516AB00E24E53 /* Company.swift */,
 				6F1D0D4A28451EB600E24E53 /* People.swift */,
@@ -300,12 +300,12 @@
 				6F1D0D3F28450C8E00E24E53 /* FavouritesViewController.swift in Sources */,
 				6F1D0D47284516AB00E24E53 /* Company.swift in Sources */,
 				6F1D0D4B28451EB600E24E53 /* People.swift in Sources */,
-				6F1D0D4928451BD800E24E53 /* TV.swift in Sources */,
 				6F88DA842846553300A63818 /* Network.swift in Sources */,
 				6F1D0D3D28450C8100E24E53 /* SearchViewController.swift in Sources */,
 				6F1D0D1B284503F100E24E53 /* AppDelegate.swift in Sources */,
 				6F88DA7F2846513F00A63818 /* AlertManager.swift in Sources */,
 				6F1D0D25284503F100E24E53 /* MovieApp.xcdatamodeld in Sources */,
+				6F96C02C284668AC00002879 /* MovieService.swift in Sources */,
 				6F88DA7D284650AF00A63818 /* MovieDetailViewController.swift in Sources */,
 				6F88DA6C2846088C00A63818 /* MovieList.swift in Sources */,
 				6F1D0D1D284503F100E24E53 /* SceneDelegate.swift in Sources */,
@@ -338,6 +338,7 @@
 /* Begin XCBuildConfiguration section */
 		6F1D0D2C284503F200E24E53 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F1D0D362845090F00E24E53 /* apiConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -454,6 +455,7 @@
 		};
 		6F1D0D2F284503F200E24E53 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F1D0D362845090F00E24E53 /* apiConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -510,96 +512,6 @@
 			};
 			name = Release;
 		};
-		6F1D0D34284508C100E24E53 /* Api */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Api;
-		};
-		6F1D0D35284508C100E24E53 /* Api */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L2VK3YUNF7;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieApp/Info.plist;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.obss-muratsenol.MovieApp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Api;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -607,21 +519,19 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F1D0D2C284503F200E24E53 /* Debug */,
-				6F1D0D34284508C100E24E53 /* Api */,
 				6F1D0D2D284503F200E24E53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Api;
+			defaultConfigurationName = Debug;
 		};
 		6F1D0D2E284503F200E24E53 /* Build configuration list for PBXNativeTarget "MovieApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F1D0D2F284503F200E24E53 /* Debug */,
-				6F1D0D35284508C100E24E53 /* Api */,
 				6F1D0D30284503F200E24E53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Api;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
