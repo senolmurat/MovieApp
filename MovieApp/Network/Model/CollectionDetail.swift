@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Collection
-struct Collection: Codable {
+struct CollectionDetail: Codable {
     let id: Int
     let name: String
     let overview: String

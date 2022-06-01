@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if(UserDefaults.standard.array(forKey: K.favouritedListKey) == nil){
+            UserDefaults.standard.set([] , forKey: K.favouritedListKey)
+        }
         
         return true
     }

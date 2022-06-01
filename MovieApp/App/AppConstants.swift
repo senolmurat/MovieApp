@@ -9,6 +9,7 @@ import Foundation
 
 struct K {
     
+    static let favouritedListKey = "favouriteMovieList"
     static let MovieListCellIdentifier = "MovieCell"
     static let MovieListCellNibName = "MovieCell"
     

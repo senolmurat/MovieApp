@@ -39,6 +39,7 @@ class MovieViewController: UIViewController {
             switch result {
             case .success(let response):
                 self.pageCounter += 1
+                self.totalMovieCount = response.totalResults
                 self.movieList.append(contentsOf: response.results)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

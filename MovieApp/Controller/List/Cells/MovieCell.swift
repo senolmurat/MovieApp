@@ -19,6 +19,8 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var bookmarkImageView: UIImageView!
     private var isFavourited : Bool = false
+    private var movieID : Int?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +28,7 @@ class MovieCell: UITableViewCell {
         
         let bookmarkGesture = UITapGestureRecognizer(target: self, action:  #selector (self.bookmarkClicked(_:)))
         self.bookmarkImageView.addGestureRecognizer(bookmarkGesture)
+        bookmarkImageView.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,47 +39,52 @@ class MovieCell: UITableViewCell {
     
     func configureMovie(with movie : Movie){
         
+        movieID = movie.id
+        
         if let backdropPath = movie.backdropPath{
             ImageManager.setImage(withPath: backdropPath, on: backdropImageView)
-        }
-        else{
-            backdropImageView.image = UIImage(named: AppConfig.config.defaultBackdropImage)
         }
         if let posterPath = movie.posterPath{
             ImageManager.setImage(withPath: posterPath, on: posterImageView)
         }
-        else{
-            posterImageView.image = UIImage(named: AppConfig.config.defaultPosterImage)
-        }
         
-        //TODO set bookmark/favourited image according to user data
+        //TODO: set bookmark/favourited image according to user data
+        isFavourited = AppConfig.config.favouriteList.contains(movie.id)
+        if(isFavourited){
+            bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
+        }
+        else{
+            bookmarkImageView.image = UIImage(systemName: "bookmark")
+        }
         
         movieNameLabel.text = movie.title
         genreLabel.text = movie.genresCSV
         overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
         releaseDateLabel.text = movie.releaseDate
-        
     }
     
     func configureMovie(with movie : MovieListResult){
+        movieID = movie.id
+        
         if let backdropPath = movie.backdropPath{
             ImageManager.setImage(withPath: backdropPath, on: backdropImageView)
-        }
-        else{
-            backdropImageView.image = UIImage(named: AppConfig.config.defaultBackdropImage)
         }
         if let posterPath = movie.posterPath{
             ImageManager.setImage(withPath: posterPath, on: posterImageView)
         }
+        
+        //TODO: set bookmark/favourited image according to user data
+        isFavourited = AppConfig.config.favouriteList.contains(movie.id)
+        if(isFavourited){
+            bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
+        }
         else{
-            posterImageView.image = UIImage(named: AppConfig.config.defaultPosterImage)
+            bookmarkImageView.image = UIImage(systemName: "bookmark")
         }
         
-        //TODO set bookmark/favourited image according to user data
-        
         movieNameLabel.text = movie.title
-        //TODO make genreCSV for MovieListResult
+        //TODO: make genreCSV for MovieListResult
         overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
         releaseDateLabel.text = movie.releaseDate
@@ -86,10 +94,12 @@ class MovieCell: UITableViewCell {
     @objc func bookmarkClicked(_ sender:UITapGestureRecognizer){
         if(isFavourited){
             isFavourited = false
+            AppConfig.config.favouriteList.removeAll(where: {$0 == movieID})
             bookmarkImageView.image = UIImage(systemName: "bookmark")
         }
         else{
             isFavourited = true
+            AppConfig.config.favouriteList.append(movieID!)
             bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
         }
     }

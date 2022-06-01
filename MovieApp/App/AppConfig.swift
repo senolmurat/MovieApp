@@ -11,6 +11,12 @@ class AppConfig{
     
     static let config = AppConfig()
     
+    var favouriteList : [Int] = UserDefaults.standard.array(forKey: K.favouritedListKey) as! [Int]{
+        didSet{
+            UserDefaults.standard.set(favouriteList , forKey: K.favouritedListKey)
+        }
+    }
+    
     let appName = "MovieApp"
     let apikey : String = Bundle.main.infoDictionary?["API_KEY"] as! String
     let baseURL : String = Bundle.main.infoDictionary?["BASE_API_URL"] as! String

@@ -54,7 +54,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msb-Fd-IEx" userLabel="ScroolableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="836"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6fu-gk-rMs">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="621"/>
@@ -97,20 +97,41 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqb-cV-5zV">
+                                                <rect key="frame" x="8" y="637" width="398" height="183"/>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit metus non eros ultricies imperdiet. Nullam sit amet lobortis ipsum, id rutrum urna. Sed et cursus felis, nec feugiat risus. Pellentesque venenatis blandit est. Morbi dui tortor, lobortis nec lacinia in, molestie at purus. Aliquam finibus sit amet urna eget rutrum. Etiam a euismod sem. Donec ac vulputate urna, in finibus enim. Nunc blandit turpis eget diam volutpat ornare.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nI4-5J-ZSb">
+                                                <rect key="frame" x="368" y="68" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="nI4-5J-ZSb" secondAttribute="height" multiplier="1:1" id="Rc8-7L-FVo"/>
+                                                    <constraint firstAttribute="width" constant="30" id="U7C-JQ-2cJ"/>
+                                                    <constraint firstAttribute="height" constant="30" id="nWH-fD-42j"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Wzl-Vo-jM5" firstAttribute="leading" secondItem="Msb-Fd-IEx" secondAttribute="leading" constant="8" id="3aH-Lu-YVj"/>
+                                            <constraint firstAttribute="trailing" secondItem="nI4-5J-ZSb" secondAttribute="trailing" constant="16" id="6kR-um-tuQ"/>
                                             <constraint firstItem="6fu-gk-rMs" firstAttribute="top" secondItem="Msb-Fd-IEx" secondAttribute="top" id="CBm-Cs-hCi"/>
                                             <constraint firstItem="3eq-AV-e1j" firstAttribute="top" secondItem="Kuv-0a-ilq" secondAttribute="bottom" constant="8" symbolic="YES" id="CcG-Kr-R5s"/>
                                             <constraint firstAttribute="trailing" secondItem="Wzl-Vo-jM5" secondAttribute="trailing" constant="8" id="FmU-Oh-nUB"/>
                                             <constraint firstItem="3eq-AV-e1j" firstAttribute="centerX" secondItem="6fu-gk-rMs" secondAttribute="centerX" id="GoC-sU-2sy"/>
                                             <constraint firstAttribute="trailing" secondItem="6fu-gk-rMs" secondAttribute="trailing" id="IC3-Hh-wDE"/>
                                             <constraint firstItem="6fu-gk-rMs" firstAttribute="bottom" secondItem="3eq-AV-e1j" secondAttribute="bottom" constant="15" id="N57-Ut-K2r"/>
+                                            <constraint firstItem="Jqb-cV-5zV" firstAttribute="top" secondItem="6fu-gk-rMs" secondAttribute="bottom" constant="16" id="Q0Y-Im-YQi"/>
                                             <constraint firstItem="Kuv-0a-ilq" firstAttribute="top" secondItem="Wzl-Vo-jM5" secondAttribute="bottom" constant="8" symbolic="YES" id="SPb-aL-CNe"/>
+                                            <constraint firstItem="Jqb-cV-5zV" firstAttribute="leading" secondItem="Msb-Fd-IEx" secondAttribute="leading" constant="8" id="XEw-Z4-WYN"/>
+                                            <constraint firstAttribute="bottom" secondItem="Jqb-cV-5zV" secondAttribute="bottom" constant="16" id="Zee-AX-IKW"/>
                                             <constraint firstItem="Wzl-Vo-jM5" firstAttribute="centerX" secondItem="6fu-gk-rMs" secondAttribute="centerX" id="dRk-Ou-IQ8"/>
                                             <constraint firstItem="Kuv-0a-ilq" firstAttribute="centerX" secondItem="6fu-gk-rMs" secondAttribute="centerX" id="dhe-Ys-n62"/>
+                                            <constraint firstItem="nI4-5J-ZSb" firstAttribute="top" secondItem="Msb-Fd-IEx" secondAttribute="top" constant="68" id="dng-s5-c9A"/>
                                             <constraint firstItem="6fu-gk-rMs" firstAttribute="leading" secondItem="Msb-Fd-IEx" secondAttribute="leading" id="ews-wa-H6m"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jqb-cV-5zV" secondAttribute="trailing" constant="8" id="rCP-iq-hq2"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -119,13 +140,11 @@
                                     <constraint firstItem="Msb-Fd-IEx" firstAttribute="leading" secondItem="suc-03-m2d" secondAttribute="leading" id="2YO-OI-b64"/>
                                     <constraint firstItem="Msb-Fd-IEx" firstAttribute="top" secondItem="suc-03-m2d" secondAttribute="top" id="CCy-xc-b0l"/>
                                     <constraint firstAttribute="bottom" secondItem="Msb-Fd-IEx" secondAttribute="bottom" id="Ms1-Zl-kwa"/>
-                                    <constraint firstItem="Msb-Fd-IEx" firstAttribute="leading" secondItem="ZyP-ER-JS9" secondAttribute="leading" id="Scw-Yx-DoS"/>
-                                    <constraint firstItem="ZyP-ER-JS9" firstAttribute="trailing" secondItem="Msb-Fd-IEx" secondAttribute="trailing" id="TpO-cK-izu"/>
-                                    <constraint firstItem="Msb-Fd-IEx" firstAttribute="top" secondItem="ZyP-ER-JS9" secondAttribute="top" id="eOe-3R-iS4"/>
-                                    <constraint firstItem="ZyP-ER-JS9" firstAttribute="bottom" secondItem="Msb-Fd-IEx" secondAttribute="bottom" id="gV5-gL-aKS"/>
+                                    <constraint firstItem="Msb-Fd-IEx" firstAttribute="leading" secondItem="suc-03-m2d" secondAttribute="leading" id="Scw-Yx-DoS"/>
+                                    <constraint firstAttribute="trailing" secondItem="Msb-Fd-IEx" secondAttribute="trailing" id="TpO-cK-izu"/>
+                                    <constraint firstItem="Msb-Fd-IEx" firstAttribute="top" secondItem="suc-03-m2d" secondAttribute="top" id="eOe-3R-iS4"/>
+                                    <constraint firstAttribute="bottom" secondItem="Msb-Fd-IEx" secondAttribute="bottom" id="gV5-gL-aKS"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="bv2-jg-rac"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="ZyP-ER-JS9"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qUb-dH-JBM"/>
@@ -138,6 +157,14 @@
                             <constraint firstItem="suc-03-m2d" firstAttribute="leading" secondItem="qUb-dH-JBM" secondAttribute="leading" id="yY3-Lg-rKu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bookmarkImageView" destination="nI4-5J-ZSb" id="hDT-IU-ZQn"/>
+                        <outlet property="movieImageView" destination="6fu-gk-rMs" id="Mih-16-yOq"/>
+                        <outlet property="overviewLabel" destination="Jqb-cV-5zV" id="Zca-K6-ADj"/>
+                        <outlet property="ratingLabel" destination="WlF-Dh-VmA" id="g7o-4l-yyM"/>
+                        <outlet property="releaseDateLable" destination="Kuv-0a-ilq" id="IPz-hy-hJs"/>
+                        <outlet property="titleLabel" destination="Wzl-Vo-jM5" id="Omw-FQ-n0s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhV-7J-yei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -256,6 +283,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="film" catalog="system" width="128" height="93"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">

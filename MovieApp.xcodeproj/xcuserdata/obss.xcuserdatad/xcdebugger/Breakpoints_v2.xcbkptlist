@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "09715FDE-258D-42F8-8498-C04B0C53EF48"
+            uuid = "D0F13FB2-CD69-4AE0-9809-C8F18514AFAE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieApp/Controller/List/MovieViewController.swift"
+            filePath = "MovieApp/App/AppConfig.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "tableView(_:willDisplay:forRowAt:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "AppConfig"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5C6297B-83E4-4351-BDB1-022EF0B48C00"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieApp/Controller/List/Cells/MovieCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "configureMovie(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
