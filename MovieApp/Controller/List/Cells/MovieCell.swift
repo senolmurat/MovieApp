@@ -17,10 +17,15 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var bookmarkImageView: UIImageView!
+    private var isFavourited : Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let bookmarkGesture = UITapGestureRecognizer(target: self, action:  #selector (self.bookmarkClicked(_:)))
+        self.bookmarkImageView.addGestureRecognizer(bookmarkGesture)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -44,6 +49,8 @@ class MovieCell: UITableViewCell {
             posterImageView.image = UIImage(named: AppConfig.config.defaultPosterImage)
         }
         
+        //TODO set bookmark/favourited image according to user data
+        
         movieNameLabel.text = movie.title
         genreLabel.text = movie.genresCSV
         overviewLabel.text = movie.overview
@@ -66,12 +73,25 @@ class MovieCell: UITableViewCell {
             posterImageView.image = UIImage(named: AppConfig.config.defaultPosterImage)
         }
         
+        //TODO set bookmark/favourited image according to user data
+        
         movieNameLabel.text = movie.title
         //TODO make genreCSV for MovieListResult
         overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
         releaseDateLabel.text = movie.releaseDate
         
+    }
+    
+    @objc func bookmarkClicked(_ sender:UITapGestureRecognizer){
+        if(isFavourited){
+            isFavourited = false
+            bookmarkImageView.image = UIImage(systemName: "bookmark")
+        }
+        else{
+            isFavourited = true
+            bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
+        }
     }
     
 }

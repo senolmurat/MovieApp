@@ -26,9 +26,12 @@ class MovieViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        moviesTabBarItem.title = "Movies"
-        moviesTabBarItem.image = UIImage(systemName: "film")
-        moviesTabBarItem.selectedImage = UIImage(systemName: "film")
+        
+        if let moviesTabBarItem = navigationController?.tabBarItem{
+            moviesTabBarItem.title = "Movies"
+            moviesTabBarItem.image = UIImage(systemName: "film")
+            moviesTabBarItem.selectedImage = UIImage(systemName: "film")
+        }
         
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
