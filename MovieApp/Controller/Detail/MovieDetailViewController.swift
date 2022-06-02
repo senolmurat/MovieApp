@@ -13,7 +13,11 @@ class MovieDetailViewController: UIViewController {
     var movie : Movie?
     let movieService = MovieService()
     var castList : [Cast] = []
-
+    
+    var imageList : [MovieImage]?
+    var imageIndex : Int = 0
+    var totalImageCount : Int?
+    
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLable: UILabel!
@@ -44,11 +48,26 @@ class MovieDetailViewController: UIViewController {
                 case .success(let response):
                     self.movie = response
                     DispatchQueue.main.async {
+                        self.title = response.title
                         self.configureMovieDetail(with: response)
                         self.genreCollectionView.reloadData()
                         //AlertManager.dismiss(in: self, animated: true)
                     }
                     
+                    //TODO: Kinda unnecessary since backdrop images are a bunch of photoshopped posters ¯\_(ツ)_/¯
+                    //GET Images
+//                    self.movieService.getImages(movieID: response.id) { result in
+//                        switch result {
+//                        case .success(let response):
+//                            self.imageList = response.backdrops
+//                            self.totalImageCount = response.backdrops.count
+//                        case .failure(let error):
+//                            //TODO: maybe show alertbox ?
+//                            print(error)
+//                        }
+//                    }
+                    
+                    //GET Credits
                     self.movieService.getCredits(movieID: response.id) { result in
                         switch result {
                         case .success(let response):
@@ -75,18 +94,23 @@ class MovieDetailViewController: UIViewController {
             }
         }
         
-        let bookmarkGesture = UITapGestureRecognizer(target: self, action:  #selector (self.bookmarkClicked(_:)))
-        self.bookmarkImageView.addGestureRecognizer(bookmarkGesture)
+        //MARK: - Required Gesture Recognizers
+        let bookmarkClickGesture = UITapGestureRecognizer(target: self, action:  #selector (self.bookmarkClicked(_:)))
+        self.bookmarkImageView.addGestureRecognizer(bookmarkClickGesture)
         bookmarkImageView.isUserInteractionEnabled = true
         
-        //genreCollectionView.register(GenreCell.self, forCellWithReuseIdentifier: K.GenreCellIdentifier)
+//        let imageSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
+//        self.movieImageView.addGestureRecognizer(imageSwipeGesture)
+//        movieImageView.isUserInteractionEnabled = true
+        
+        //MARK: - Cell Registirations
         self.genreCollectionView.register(UINib(nibName: K.GenreCellNibName, bundle: nil), forCellWithReuseIdentifier: K.GenreCellIdentifier)
         self.castCollectionView.register(UINib(nibName: K.CastCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CastCellIdentifier)
         
     }
     
     func configureMovieDetail(with movie : Movie){
-        ImageManager.setImage(withPath: movie.posterPath, on: movieImageView)
+        ImageManager.setImage(withPath: movie.posterPath, on: movieImageView , placeholder: UIImage(systemName: K.posterPlaceholder)!)
         
         let finalColor = UIColor.systemBackground
         let initialColor = finalColor.withAlphaComponent(0.0)
@@ -95,7 +119,6 @@ class MovieDetailViewController: UIViewController {
         gradientLayer.type = .axial
         gradientLayer.colors = [initialColor.cgColor, finalColor.cgColor]
         gradientLayer.locations = [0, 1]
-        //gradientLayer.frame = movieImageView.bounds
         gradientLayer.frame = CGRect(
             x: movieImageView.bounds.origin.x,
             y: movieImageView.bounds.origin.y + movieImageView.bounds.height / 2,
@@ -118,6 +141,7 @@ class MovieDetailViewController: UIViewController {
         
     }
     
+    //MARK: - Gesture Recognizer Functions
     @objc func bookmarkClicked(_ sender:UITapGestureRecognizer){
         if(isFavourited){
             isFavourited = false
@@ -131,19 +155,46 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    @objc func swiped(_ sender:UISwipeGestureRecognizer) {
+        
+        guard let totalImageCount = totalImageCount else {
+            return
+        }
 
+        guard let imageList = imageList else {
+            return
+        }
+
+        switch sender.direction {
+        case UISwipeGestureRecognizer.Direction.right:
+            imageIndex -= 1
+            if imageIndex < 0 {
+                imageIndex = totalImageCount - 1
+            }
+            ImageManager.setImage(withPath: imageList[imageIndex].filePath, on: movieImageView)
+        case UISwipeGestureRecognizer.Direction.left:
+            imageIndex += 1
+            if imageIndex > totalImageCount {
+                imageIndex = 0
+            }
+            ImageManager.setImage(withPath: imageList[imageIndex].filePath, on: movieImageView)
+        default:
+            break
+        }
+    }
 }
 
-
+//MARK: - Collection View Data Source Functions
 extension MovieDetailViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == genreCollectionView){
-            return movie?.genres.count ?? 0
+            if let movie = movie{
+                return movie.genres.count
+            }
         }
         else if(collectionView == castCollectionView){
             return castList.count
         }
-        
         return 0
     }
     

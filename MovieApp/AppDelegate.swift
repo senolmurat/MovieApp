@@ -19,6 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set([] , forKey: K.favouritedListKey)
         }
         
+        //TODO: Localization
+        GenreService().getMovieGenreList(language: "en-US", completion: { result in
+            switch result {
+            case .success(let response):
+                for genre in response.genres{
+                    AppConfig.config.genres[genre.id] = genre.name
+                }
+            case .failure(let error):
+                //TODO: shutdown app
+                print(error)
+            }
+        })
+        
         return true
     }
 

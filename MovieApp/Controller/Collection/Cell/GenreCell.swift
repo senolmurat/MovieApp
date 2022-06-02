@@ -10,12 +10,13 @@ import UIKit
 class GenreCell: UICollectionViewCell {
 
     @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var view: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        genreLabel.layer.cornerRadius = 2.0
-        genreLabel.clipsToBounds = true
+        view.layer.cornerRadius = 6.0
+        view.clipsToBounds = true
     }
     
     func configure(with genre : Genre){

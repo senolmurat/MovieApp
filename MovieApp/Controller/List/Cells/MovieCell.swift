@@ -33,8 +33,6 @@ class MovieCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configureMovie(with movie : Movie){
@@ -44,7 +42,6 @@ class MovieCell: UITableViewCell {
         ImageManager.setImage(withPath: movie.backdropPath, on: backdropImageView)
         ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
         
-        //TODO: set bookmark/favourited image according to user data
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
         if(isFavourited){
             bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
@@ -66,7 +63,6 @@ class MovieCell: UITableViewCell {
         ImageManager.setImage(withPath: movie.backdropPath, on: backdropImageView)
         ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
         
-        //TODO: set bookmark/favourited image according to user data
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
         if(isFavourited){
             bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
@@ -76,7 +72,7 @@ class MovieCell: UITableViewCell {
         }
         
         movieNameLabel.text = movie.title
-        //TODO: make genreCSV for MovieListResult
+        genreLabel.text = movie.genresCSV
         overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
         releaseDateLabel.text = movie.releaseDate

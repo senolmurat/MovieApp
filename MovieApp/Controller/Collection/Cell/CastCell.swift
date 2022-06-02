@@ -22,8 +22,8 @@ class CastCell: UICollectionViewCell {
         
         characterNameLabel.text = cast.character
         castNameLabel.text = cast.name
-        //ImageManager.setImageRounded(withPath: cast.profilePath, on: castImageView, cornerRadius: castImageView.bounds.width)
-        ImageManager.setImage(withPath: cast.profilePath, on: castImageView)
+        //ImageManager.setImageRounded(withPath: cast.profilePath, on: castImageView, cornerRadius: castImageView.bounds.width / 2 , placeholder: UIImage(systemName:  K.peoplePlaceholder)!)
+        ImageManager.setImage(withPath: cast.profilePath, on: castImageView,placeholder: UIImage(systemName:  K.peoplePlaceholder)!)
         
     }
 

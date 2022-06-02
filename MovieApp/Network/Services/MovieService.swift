@@ -8,11 +8,11 @@
 import Foundation
 
 protocol MovieServiceProtocol {
-    //func getAllCharacters(completion: @escaping (Result<AllCharacterResponse, NetworkError>) -> Void)
     func getMovieDetail(id: Int, completion: @escaping (Result<Movie, NetworkError>) -> Void)
     func getRecommendations(id: Int, completion: @escaping (Result<MovieList, NetworkError>) -> Void)
     func getPopular(page : Int,completion: @escaping (Result<MovieList, NetworkError>) -> Void)
     func getCredits(movieID : Int ,completion: @escaping (Result<Credits, NetworkError>) -> Void)
+    func getImages(movieID : Int ,completion: @escaping (Result<MovieImageList, NetworkError>) -> Void)
 }
 
 struct MovieService: MovieServiceProtocol {
@@ -38,6 +38,11 @@ struct MovieService: MovieServiceProtocol {
     
     func getCredits(movieID : Int ,completion: @escaping (Result<Credits, NetworkError>) -> Void){
         let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/movie/\(movieID)/credits" + "?api_key=\(AppConfig.config.apikey)")!)
+        network.performRequest(request: urlRequest, completion: completion)
+    }
+    
+    func getImages(movieID : Int ,completion: @escaping (Result<MovieImageList, NetworkError>) -> Void){
+        let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/movie/\(movieID)/images" + "?api_key=\(AppConfig.config.apikey)")!)
         network.performRequest(request: urlRequest, completion: completion)
     }
     

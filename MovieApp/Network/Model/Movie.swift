@@ -38,7 +38,7 @@ struct Movie: Codable {
         for genre in genres{
             genreNames.append(genre.name)
         }
-        return genreNames.joined(separator: ",")
+        return genreNames.joined(separator: ", ")
     }
 
     enum CodingKeys: String, CodingKey {

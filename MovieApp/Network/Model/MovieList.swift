@@ -38,6 +38,17 @@ struct MovieListResult: Codable {
     let voteCount: Int
     let video: Bool
     let voteAverage: Double
+    
+    var genresCSV : String{
+        var genreNames : [String] = []
+        for genreID in genreIDS{
+            if let genreName = AppConfig.config.genres[genreID]{
+                genreNames.append(genreName)
+            }
+        }
+        return genreNames.joined(separator: ", ")
+    }
+
 
     enum CodingKeys: String, CodingKey {
         case posterPath = "poster_path"

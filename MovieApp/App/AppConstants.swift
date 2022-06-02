@@ -9,6 +9,9 @@ import Foundation
 
 struct K {
     
+    static let appNameWithEmoji = "MovieApp ►"
+    static let appName = "MovieApp"
+    
     static let favouritedListKey = "favouriteMovieList"
     
     static let MovieListCellIdentifier = "MovieCell"
@@ -19,11 +22,7 @@ struct K {
     static let CastCellIdentifier = "CastCell"
     static let CastCellNibName = "CastCell"
     
-    struct BrandColors {
-        static let purple = "BrandPurple"
-        static let lightPurple = "BrandLightPurple"
-        static let blue = "BrandBlue"
-        static let lighBlue = "BrandLightBlue"
-    }
+    static let peoplePlaceholder = "person.circle"
+    static let posterPlaceholder = "camera.metering.unknown"
     
 }

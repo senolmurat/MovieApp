@@ -17,7 +17,8 @@ class AppConfig{
         }
     }
     
-    let appName = "MovieApp"
+    var genres : [Int : String] = [:]
+    
     let apikey : String = Bundle.main.infoDictionary?["API_KEY"] as! String
     let baseURL : String = Bundle.main.infoDictionary?["BASE_API_URL"] as! String
     let originalImageURL : String = Bundle.main.infoDictionary?["ORIGINAL_IMAGE_URL"] as! String

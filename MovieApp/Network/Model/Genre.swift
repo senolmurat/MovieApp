@@ -7,6 +7,11 @@
 
 import Foundation
 
+
+struct Genres: Codable{
+    let genres : [Genre]
+}
+
 // MARK: - Genre
 struct Genre: Codable {
     let id: Int

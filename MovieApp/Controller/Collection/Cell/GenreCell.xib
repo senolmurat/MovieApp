@@ -23,12 +23,12 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVz-fy-lJb">
                                 <rect key="frame" x="8" y="5" width="114" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
                             <constraint firstItem="VVz-fy-lJb" firstAttribute="centerY" secondItem="8mT-fw-a6H" secondAttribute="centerY" id="4z8-mK-KYO"/>
                             <constraint firstItem="VVz-fy-lJb" firstAttribute="centerX" secondItem="8mT-fw-a6H" secondAttribute="centerX" id="MxP-Mz-xJJ"/>
@@ -50,6 +50,7 @@
             <size key="customSize" width="130" height="40"/>
             <connections>
                 <outlet property="genreLabel" destination="VVz-fy-lJb" id="R8y-WP-bBe"/>
+                <outlet property="view" destination="8mT-fw-a6H" id="yv8-wz-sK9"/>
             </connections>
             <point key="canvasLocation" x="189.85507246376812" y="120.53571428571428"/>
         </collectionViewCell>
