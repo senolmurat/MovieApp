@@ -18,14 +18,18 @@ class MovieDetailViewController: UIViewController {
     var imageIndex : Int = 0
     var totalImageCount : Int?
     
+    var recommendationList : [MovieListResult] = []
+    
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLable: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var bookmarkImageView: UIImageView!
+    
     @IBOutlet weak var genreCollectionView: UICollectionView!
     @IBOutlet weak var castCollectionView: UICollectionView!
+    @IBOutlet weak var recommendationsCollectionView: UICollectionView!
     
     private var isFavourited : Bool = false
     
@@ -40,6 +44,9 @@ class MovieDetailViewController: UIViewController {
         
         castCollectionView.delegate = self
         castCollectionView.dataSource = self
+        
+        recommendationsCollectionView.delegate = self
+        recommendationsCollectionView.dataSource = self
         
         if let movieID = movieID{
             //AlertManager.showLoadingIndicator(in: self)
@@ -67,12 +74,27 @@ class MovieDetailViewController: UIViewController {
 //                        }
 //                    }
                     
+                    //GET Recommendations
+                    self.movieService.getRecommendations(id: response.id) { result in
+                        switch result {
+                        case .success(let response):
+                            //TODO: Maybe pagination ? Limit For now...
+                            self.recommendationList.append(contentsOf: response.results.prefix(AppConfig.config.MaxRecommendedMovieCount))
+                            DispatchQueue.main.async {
+                                self.recommendationsCollectionView.reloadData()
+                            }
+                        case .failure(let error):
+                            //TODO: maybe show alertbox ?
+                            print(error)
+                        }
+                    }
+                        
                     //GET Credits
                     self.movieService.getCredits(movieID: response.id) { result in
                         switch result {
                         case .success(let response):
                             //TODO: Maybe pagination ? Limit For now...
-                            self.castList.append(contentsOf: response.cast.prefix(AppConfig.config.MovieDetailViewMaxCastLength))
+                            self.castList.append(contentsOf: response.cast.prefix(AppConfig.config.MaxShowedCastCount))
                             DispatchQueue.main.async {
                                 self.castCollectionView.reloadData()
                             }
@@ -106,6 +128,7 @@ class MovieDetailViewController: UIViewController {
         //MARK: - Cell Registirations
         self.genreCollectionView.register(UINib(nibName: K.GenreCellNibName, bundle: nil), forCellWithReuseIdentifier: K.GenreCellIdentifier)
         self.castCollectionView.register(UINib(nibName: K.CastCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CastCellIdentifier)
+        self.recommendationsCollectionView.register(UINib(nibName: K.RecommendedMovieCellNibName, bundle: nil), forCellWithReuseIdentifier: K.RecommendedMovieCellIdentifier)
         
     }
     
@@ -195,6 +218,9 @@ extension MovieDetailViewController : UICollectionViewDataSource{
         else if(collectionView == castCollectionView){
             return castList.count
         }
+        else if(collectionView == recommendationsCollectionView){
+            return recommendationList.count
+        }
         return 0
     }
     
@@ -210,6 +236,12 @@ extension MovieDetailViewController : UICollectionViewDataSource{
             let cast = castList[indexPath.row]
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CastCellIdentifier, for: indexPath) as! CastCell
             cell.configure(with: cast)
+            return cell
+        }
+        else if(collectionView == recommendationsCollectionView){
+            let movie = recommendationList[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.RecommendedMovieCellIdentifier, for: indexPath) as! RecommendedMovieCell
+            cell.configure(with: movie)
             return cell
         }
         

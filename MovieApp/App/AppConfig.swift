@@ -22,7 +22,8 @@ class AppConfig{
     let apikey : String = Bundle.main.infoDictionary?["API_KEY"] as! String
     let baseURL : String = Bundle.main.infoDictionary?["BASE_API_URL"] as! String
     let originalImageURL : String = Bundle.main.infoDictionary?["ORIGINAL_IMAGE_URL"] as! String
-    let MovieDetailViewMaxCastLength : Int = Bundle.main.infoDictionary?["MovieDetailViewMaxCastLength"] as? Int ?? 0
+    let MaxShowedCastCount : Int = Bundle.main.infoDictionary?["MaxShowedCastCount"] as? Int ?? 0
+    let MaxRecommendedMovieCount : Int = Bundle.main.infoDictionary?["MaxRecommendedMovieCount"] as? Int ?? 0
     //TODO Give errors if key not found in infoDictionary
     //TODO get selected Language from a stored plist
     

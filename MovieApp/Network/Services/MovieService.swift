@@ -27,7 +27,8 @@ struct MovieService: MovieServiceProtocol {
     }
     
     func getRecommendations(id: Int, completion: @escaping (Result<MovieList, NetworkError>) -> Void) {
-        
+        let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/movie/\(id)/recommendations" + "?api_key=\(AppConfig.config.apikey)")!)
+        network.performRequest(request: urlRequest, completion: completion)
     }
     
     func getPopular(page : Int,completion: @escaping (Result<MovieList, NetworkError>) -> Void) {
