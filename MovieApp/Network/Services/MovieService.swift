@@ -12,10 +12,12 @@ protocol MovieServiceProtocol {
     func getMovieDetail(id: Int, completion: @escaping (Result<Movie, NetworkError>) -> Void)
     func getRecommendations(id: Int, completion: @escaping (Result<MovieList, NetworkError>) -> Void)
     func getPopular(page : Int,completion: @escaping (Result<MovieList, NetworkError>) -> Void)
+    func getCredits(movieID : Int ,completion: @escaping (Result<Credits, NetworkError>) -> Void)
 }
 
 struct MovieService: MovieServiceProtocol {
     //TODO: make an endpoint builder with query items
+    //TODO: LOCALIZATION
     
     private let network = Network()
     
@@ -31,6 +33,11 @@ struct MovieService: MovieServiceProtocol {
     func getPopular(page : Int,completion: @escaping (Result<MovieList, NetworkError>) -> Void) {
         print(AppConfig.config.baseURL + "/movie/popular" + "?api_key=\(AppConfig.config.apikey)" + "&page=\(page)")
         let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/movie/popular" + "?api_key=\(AppConfig.config.apikey)" + "&page=\(page)")!)
+        network.performRequest(request: urlRequest, completion: completion)
+    }
+    
+    func getCredits(movieID : Int ,completion: @escaping (Result<Credits, NetworkError>) -> Void){
+        let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/movie/\(movieID)/credits" + "?api_key=\(AppConfig.config.apikey)")!)
         network.performRequest(request: urlRequest, completion: completion)
     }
     

@@ -10,8 +10,14 @@ import Foundation
 struct K {
     
     static let favouritedListKey = "favouriteMovieList"
+    
     static let MovieListCellIdentifier = "MovieCell"
     static let MovieListCellNibName = "MovieCell"
+    
+    static let GenreCellIdentifier = "GenreCell"
+    static let GenreCellNibName = "GenreCell"
+    static let CastCellIdentifier = "CastCell"
+    static let CastCellNibName = "CastCell"
     
     struct BrandColors {
         static let purple = "BrandPurple"

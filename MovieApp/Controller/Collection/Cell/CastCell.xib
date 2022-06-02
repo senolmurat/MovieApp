@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CastCell" id="gTV-IL-0wX" customClass="CastCell" customModule="MovieApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbh-C3-Ecm">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBC-RC-Xac">
+                                <rect key="frame" x="3" y="3" width="54" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="YBC-RC-Xac" secondAttribute="height" multiplier="1:1" id="3bL-r4-ZRF"/>
+                                    <constraint firstAttribute="width" constant="54" id="3yD-WN-0FR"/>
+                                    <constraint firstAttribute="height" constant="54" id="aBz-1j-4ev"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2W6-0W-tHK">
+                                <rect key="frame" x="60" y="8" width="83" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Character Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kel-8q-JVD">
+                                <rect key="frame" x="60" y="35" width="97" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YBC-RC-Xac" firstAttribute="leading" secondItem="Tbh-C3-Ecm" secondAttribute="leading" constant="3" id="B8q-FD-Ty1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2W6-0W-tHK" secondAttribute="trailing" constant="3" id="Z3J-Zf-hkI"/>
+                            <constraint firstItem="2W6-0W-tHK" firstAttribute="top" secondItem="YBC-RC-Xac" secondAttribute="top" constant="5" id="bvh-4O-4jb"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kel-8q-JVD" secondAttribute="trailing" constant="3" id="gwU-uE-YxE"/>
+                            <constraint firstItem="2W6-0W-tHK" firstAttribute="leading" secondItem="kel-8q-JVD" secondAttribute="leading" id="j0n-72-MnF"/>
+                            <constraint firstItem="kel-8q-JVD" firstAttribute="bottom" secondItem="YBC-RC-Xac" secondAttribute="bottom" constant="-5" id="nhj-QZ-6Ox"/>
+                            <constraint firstItem="YBC-RC-Xac" firstAttribute="centerY" secondItem="Tbh-C3-Ecm" secondAttribute="centerY" id="se0-NL-3vx"/>
+                            <constraint firstItem="2W6-0W-tHK" firstAttribute="leading" secondItem="YBC-RC-Xac" secondAttribute="trailing" constant="3" id="wa7-uP-9dG"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Tbh-C3-Ecm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RRw-Nr-n8d"/>
+                <constraint firstItem="Tbh-C3-Ecm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WVP-I2-QTq"/>
+                <constraint firstAttribute="trailing" secondItem="Tbh-C3-Ecm" secondAttribute="trailing" id="XYg-db-s5X"/>
+                <constraint firstAttribute="bottom" secondItem="Tbh-C3-Ecm" secondAttribute="bottom" id="lKW-WT-WCH"/>
+            </constraints>
+            <size key="customSize" width="160" height="60"/>
+            <connections>
+                <outlet property="castImageView" destination="YBC-RC-Xac" id="vhI-tD-MC6"/>
+                <outlet property="castNameLabel" destination="2W6-0W-tHK" id="VFJ-X8-B35"/>
+                <outlet property="characterNameLabel" destination="kel-8q-JVD" id="v76-ep-0eM"/>
+            </connections>
+            <point key="canvasLocation" x="211.59420289855075" y="125.89285714285714"/>
+        </collectionViewCell>
+    </objects>
+</document>

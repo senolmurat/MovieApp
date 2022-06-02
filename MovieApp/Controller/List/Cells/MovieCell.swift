@@ -40,13 +40,9 @@ class MovieCell: UITableViewCell {
     func configureMovie(with movie : Movie){
         
         movieID = movie.id
-        
-        if let backdropPath = movie.backdropPath{
-            ImageManager.setImage(withPath: backdropPath, on: backdropImageView)
-        }
-        if let posterPath = movie.posterPath{
-            ImageManager.setImage(withPath: posterPath, on: posterImageView)
-        }
+
+        ImageManager.setImage(withPath: movie.backdropPath, on: backdropImageView)
+        ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
         
         //TODO: set bookmark/favourited image according to user data
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
@@ -67,12 +63,8 @@ class MovieCell: UITableViewCell {
     func configureMovie(with movie : MovieListResult){
         movieID = movie.id
         
-        if let backdropPath = movie.backdropPath{
-            ImageManager.setImage(withPath: backdropPath, on: backdropImageView)
-        }
-        if let posterPath = movie.posterPath{
-            ImageManager.setImage(withPath: posterPath, on: posterImageView)
-        }
+        ImageManager.setImage(withPath: movie.backdropPath, on: backdropImageView)
+        ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
         
         //TODO: set bookmark/favourited image according to user data
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
