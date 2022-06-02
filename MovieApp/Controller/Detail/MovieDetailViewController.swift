@@ -59,6 +59,12 @@ class MovieDetailViewController: UIViewController {
         }
         
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
+        if(isFavourited){
+            bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
+        }
+        else{
+            bookmarkImageView.image = UIImage(systemName: "bookmark")
+        }
         
         titleLabel.text = movie.title
         releaseDateLable.text = movie.releaseDate
