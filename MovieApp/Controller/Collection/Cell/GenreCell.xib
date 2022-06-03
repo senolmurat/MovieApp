@@ -30,8 +30,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                         <constraints>
-                            <constraint firstItem="VVz-fy-lJb" firstAttribute="centerY" secondItem="8mT-fw-a6H" secondAttribute="centerY" id="4z8-mK-KYO"/>
-                            <constraint firstItem="VVz-fy-lJb" firstAttribute="centerX" secondItem="8mT-fw-a6H" secondAttribute="centerX" id="MxP-Mz-xJJ"/>
                             <constraint firstAttribute="bottom" secondItem="VVz-fy-lJb" secondAttribute="bottom" constant="5" id="d0o-rU-CEV"/>
                             <constraint firstItem="VVz-fy-lJb" firstAttribute="top" secondItem="8mT-fw-a6H" secondAttribute="top" constant="5" id="vb2-nV-WiB"/>
                             <constraint firstItem="VVz-fy-lJb" firstAttribute="leading" secondItem="8mT-fw-a6H" secondAttribute="leading" constant="8" id="xrz-6p-Pf7"/>

@@ -18,6 +18,10 @@ class MovieViewController: UIViewController {
     private var pageCounter : Int = 1
     private var totalMovieCount: Int?
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

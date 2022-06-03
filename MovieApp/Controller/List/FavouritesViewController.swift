@@ -17,6 +17,15 @@ class FavouritesViewController: UIViewController {
     private var pageCounter : Int = 1
     private var totalMovieCount: Int?
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,30 +34,12 @@ class FavouritesViewController: UIViewController {
         
         totalMovieCount = favouriteMovieIDList.count
         
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-        
         //TODO: maybe show a text like "your favourite list is empty" ?
-        
-        loadData()
-
         //TODO: Localization
         title = "Favourites"
 
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
-        
-        
-    }
-    
-    @objc func refreshTable(refreshControl: UIRefreshControl) {
-        loadData()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        // somewhere in your code you might need to call:
-        refreshControl.endRefreshing()
     }
     
     func loadData(){
@@ -60,12 +51,13 @@ class FavouritesViewController: UIViewController {
                 switch result {
                 case .success(let response):
                     favouriteMovieList.append(response)
-                    if favouriteMovieList.count == totalMovieCount{
-                        DispatchQueue.main.async {
-                            tableView.reloadData()
-                        }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
                     }
                 case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                     print(error)
                 }
             }

@@ -257,10 +257,22 @@ extension MovieDetailViewController : UICollectionViewDataSource{
 }
 
 extension MovieDetailViewController : UICollectionViewDelegate{
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(collectionView == castCollectionView){
+            if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: CastDetailViewController.self)) as? CastDetailViewController{
+                
+                //Preperation
+                if let indexPath = collectionView.indexPathsForSelectedItems{
+                    detailVC.personID = castList[indexPath[0].row].id
+                    collectionView.deselectItem(at: indexPath[0], animated: false)
+                }
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+        }
+    }
 }
 
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
-    
+    // https://medium.com/geekculture/swift-implement-self-sizing-uicollectionview-cells-in-6-line-of-code-or-less-bf4944d62f9
 }
 
