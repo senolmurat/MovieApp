@@ -25,7 +25,13 @@ class FavouritesViewController: UIViewController {
         
         totalMovieCount = favouriteMovieIDList.count
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         //TODO: maybe show a text like "your favourite list is empty" ?
+        
+        loadData()
 
         //TODO: Localization
         title = "Favourites"
@@ -33,6 +39,21 @@ class FavouritesViewController: UIViewController {
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
         
+        
+    }
+    
+    @objc func refreshTable(refreshControl: UIRefreshControl) {
+        loadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        // somewhere in your code you might need to call:
+        refreshControl.endRefreshing()
+    }
+    
+    func loadData(){
+        favouriteMovieIDList = AppConfig.config.favouriteList
+        favouriteMovieList.removeAll()
         //TODO: !!!!!! if there are any failure cases then it wont reload tableView data !!!!!!
         for movieID in favouriteMovieIDList{
             movieService.getMovieDetail(id: movieID) { [self] result in
@@ -61,6 +82,11 @@ extension FavouritesViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if favouriteMovieList.count == 0 {
+            self.tableView.setEmptyMessage("Your Favourite Movies List is empty...")
+        } else {
+            self.tableView.restore()
+        }
         return favouriteMovieList.count
     }
     

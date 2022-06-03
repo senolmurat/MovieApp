@@ -209,6 +209,11 @@ class MovieDetailViewController: UIViewController {
 
 //MARK: - Collection View Data Source Functions
 extension MovieDetailViewController : UICollectionViewDataSource{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if(collectionView == genreCollectionView){
             if let movie = movie{
@@ -252,6 +257,10 @@ extension MovieDetailViewController : UICollectionViewDataSource{
 }
 
 extension MovieDetailViewController : UICollectionViewDelegate{
+    
+}
+
+extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
     
 }
 

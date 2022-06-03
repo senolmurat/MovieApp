@@ -42,6 +42,7 @@
 		6F88DA7F2846513F00A63818 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA7E2846513F00A63818 /* AlertManager.swift */; };
 		6F88DA842846553300A63818 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88DA832846553300A63818 /* Network.swift */; };
 		6F96C02C284668AC00002879 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F96C02B284668AC00002879 /* MovieService.swift */; };
+		6FB6095A284A0BDA0049C4E1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB60959284A0BDA0049C4E1 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		6F88DA7E2846513F00A63818 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		6F88DA832846553300A63818 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		6F96C02B284668AC00002879 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		6FB60959284A0BDA0049C4E1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 			children = (
 				6F88DA76284623CA00A63818 /* AppConfig.swift */,
 				6F88DA7A28462E2900A63818 /* AppConstants.swift */,
+				6FB60959284A0BDA0049C4E1 /* Extensions.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F88DA6F284609A800A63818 /* MovieCell.swift in Sources */,
+				6FB6095A284A0BDA0049C4E1 /* Extensions.swift in Sources */,
 				6F88DA7B28462E2900A63818 /* AppConstants.swift in Sources */,
 				6F88DA7928462A0800A63818 /* ImageManager.swift in Sources */,
 				6F88DA77284623CA00A63818 /* AppConfig.swift in Sources */,

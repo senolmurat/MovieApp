@@ -25,7 +25,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="7Js-EL-IBu"/>
                                     <constraint firstAttribute="width" constant="54" id="Fed-mT-h7a"/>
-                                    <constraint firstAttribute="width" secondItem="YBC-RC-Xac" secondAttribute="height" multiplier="1:1" id="Ich-ex-d6L"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2W6-0W-tHK">
@@ -43,12 +42,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="YBC-RC-Xac" firstAttribute="leading" secondItem="Tbh-C3-Ecm" secondAttribute="leading" constant="3" id="B8q-FD-Ty1"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YBC-RC-Xac" secondAttribute="bottom" constant="3" id="EEA-Aq-8Vb"/>
+                            <constraint firstItem="YBC-RC-Xac" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Tbh-C3-Ecm" secondAttribute="top" constant="3" id="Pll-M6-cMG"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2W6-0W-tHK" secondAttribute="trailing" constant="3" id="Z3J-Zf-hkI"/>
                             <constraint firstItem="2W6-0W-tHK" firstAttribute="top" secondItem="YBC-RC-Xac" secondAttribute="top" constant="5" id="bvh-4O-4jb"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kel-8q-JVD" secondAttribute="trailing" constant="3" id="gwU-uE-YxE"/>
                             <constraint firstItem="2W6-0W-tHK" firstAttribute="leading" secondItem="kel-8q-JVD" secondAttribute="leading" id="j0n-72-MnF"/>
                             <constraint firstItem="kel-8q-JVD" firstAttribute="bottom" secondItem="YBC-RC-Xac" secondAttribute="bottom" constant="-5" id="nhj-QZ-6Ox"/>
-                            <constraint firstItem="YBC-RC-Xac" firstAttribute="centerY" secondItem="Tbh-C3-Ecm" secondAttribute="centerY" id="se0-NL-3vx"/>
                             <constraint firstItem="2W6-0W-tHK" firstAttribute="leading" secondItem="YBC-RC-Xac" secondAttribute="trailing" constant="3" id="wa7-uP-9dG"/>
                         </constraints>
                     </view>
@@ -56,10 +56,12 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="Tbh-C3-Ecm" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="6Uu-Be-twQ"/>
                 <constraint firstItem="Tbh-C3-Ecm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RRw-Nr-n8d"/>
                 <constraint firstItem="Tbh-C3-Ecm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WVP-I2-QTq"/>
                 <constraint firstAttribute="trailing" secondItem="Tbh-C3-Ecm" secondAttribute="trailing" id="XYg-db-s5X"/>
                 <constraint firstAttribute="bottom" secondItem="Tbh-C3-Ecm" secondAttribute="bottom" id="lKW-WT-WCH"/>
+                <constraint firstItem="Tbh-C3-Ecm" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="vN3-Yf-CdY"/>
             </constraints>
             <size key="customSize" width="160" height="60"/>
             <connections>
