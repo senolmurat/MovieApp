@@ -40,6 +40,14 @@ struct Movie: Codable {
         }
         return genreNames.joined(separator: ", ")
     }
+    
+    var productionCompaniesCSV : String{
+        var companyNames : [String] = []
+        for company in productionCompanies{
+            companyNames.append(company.name)
+        }
+        return companyNames.joined(separator: ", ")
+    }
 
     enum CodingKeys: String, CodingKey {
         case adult = "adult"

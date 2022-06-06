@@ -16,10 +16,14 @@ struct K {
     
     static let MovieListCellIdentifier = "MovieCell"
     static let MovieListCellNibName = "MovieCell"
+    static let MovieInfoCellIdentifier = "MovieInfoCell"
+    static let MovieInfoCellNibName = "MovieInfoCell"
     static let GenreCellIdentifier = "GenreCell"
     static let GenreCellNibName = "GenreCell"
     static let CastCellIdentifier = "CastCell"
     static let CastCellNibName = "CastCell"
+    static let CastPicCellIdentifier = "CastPicCell"
+    static let CastPicCellNibName = "CastPicCell"
     static let RecommendedMovieCellIdentifier = "RecommendedMovieCell"
     static let RecommendedMovieCellNibName = "RecommendedMovieCell"
     

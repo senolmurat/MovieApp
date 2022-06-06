@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbh-C3-Ecm">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBC-RC-Xac">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBC-RC-Xac">
                                 <rect key="frame" x="3" y="3" width="36" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="Fed-mT-h7a"/>
@@ -41,13 +41,14 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="YBC-RC-Xac" firstAttribute="leading" secondItem="Tbh-C3-Ecm" secondAttribute="leading" constant="3" id="B8q-FD-Ty1"/>
+                            <constraint firstAttribute="bottom" secondItem="kel-8q-JVD" secondAttribute="bottom" constant="7" id="Bd5-jf-5cZ"/>
                             <constraint firstAttribute="bottom" secondItem="YBC-RC-Xac" secondAttribute="bottom" constant="3" id="EEA-Aq-8Vb"/>
+                            <constraint firstItem="2W6-0W-tHK" firstAttribute="top" secondItem="Tbh-C3-Ecm" secondAttribute="top" constant="7" id="LLd-qb-QWC"/>
                             <constraint firstItem="YBC-RC-Xac" firstAttribute="top" secondItem="Tbh-C3-Ecm" secondAttribute="top" constant="3" id="Pll-M6-cMG"/>
                             <constraint firstAttribute="trailing" secondItem="2W6-0W-tHK" secondAttribute="trailing" constant="3" id="Z3J-Zf-hkI"/>
-                            <constraint firstItem="2W6-0W-tHK" firstAttribute="top" secondItem="YBC-RC-Xac" secondAttribute="top" constant="4" id="bvh-4O-4jb"/>
+                            <constraint firstItem="kel-8q-JVD" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2W6-0W-tHK" secondAttribute="bottom" constant="8" id="ZfC-Yc-5bY"/>
                             <constraint firstAttribute="trailing" secondItem="kel-8q-JVD" secondAttribute="trailing" constant="3" id="gwU-uE-YxE"/>
                             <constraint firstItem="2W6-0W-tHK" firstAttribute="leading" secondItem="kel-8q-JVD" secondAttribute="leading" id="j0n-72-MnF"/>
-                            <constraint firstItem="kel-8q-JVD" firstAttribute="bottom" secondItem="YBC-RC-Xac" secondAttribute="bottom" constant="-4" id="nhj-QZ-6Ox"/>
                             <constraint firstItem="2W6-0W-tHK" firstAttribute="leading" secondItem="YBC-RC-Xac" secondAttribute="trailing" constant="8" id="wa7-uP-9dG"/>
                         </constraints>
                     </view>

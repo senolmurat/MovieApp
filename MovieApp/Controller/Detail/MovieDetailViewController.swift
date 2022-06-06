@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class MovieDetailViewController: UIViewController {
     
@@ -27,14 +28,23 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var bookmarkImageView: UIImageView!
     
+    
+    @IBOutlet weak var budgetTitleLabel: UILabel!
+    @IBOutlet weak var budgetInfoLabel: UILabel!
+    @IBOutlet weak var revenueTitleLabel: UILabel!
+    @IBOutlet weak var revenueInfoLabel: UILabel!
+    @IBOutlet weak var runtimeTitleLabel: UILabel!
+    @IBOutlet weak var runtimeInfoLabel: UILabel!
+    @IBOutlet weak var homepageTitleLabel: UILabel!
+    @IBOutlet weak var homepageInfoLabel: UILabel!
+    @IBOutlet weak var companiesTitleLabel: UILabel!
+    @IBOutlet weak var companiesInfoLabel: UILabel!
+    
     @IBOutlet weak var genreCollectionView: UICollectionView!
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var recommendationsCollectionView: UICollectionView!
     
     private var isFavourited : Bool = false
-    
-    //TODO: Add Cast and Tags , maybe horizontal scrool view or collection View
-    //TODO: make image view scroolable  , maybe images with scenes from the movie
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,9 +139,10 @@ class MovieDetailViewController: UIViewController {
         self.genreCollectionView.register(UINib(nibName: K.GenreCellNibName, bundle: nil), forCellWithReuseIdentifier: K.GenreCellIdentifier)
         self.castCollectionView.register(UINib(nibName: K.CastCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CastCellIdentifier)
         self.recommendationsCollectionView.register(UINib(nibName: K.RecommendedMovieCellNibName, bundle: nil), forCellWithReuseIdentifier: K.RecommendedMovieCellIdentifier)
-        
     }
     
+    
+    //MARK: - Page Configuration
     func configureMovieDetail(with movie : Movie){
         ImageManager.setImage(withPath: movie.posterPath, on: movieImageView , placeholder: UIImage(systemName: K.posterPlaceholder)!)
         
@@ -162,6 +173,46 @@ class MovieDetailViewController: UIViewController {
         ratingLabel.text = String(movie.voteAverage)
         overviewLabel.text = movie.overview
         
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_US") // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
+        formatter.numberStyle = .currency
+        
+        //TODO: Localization
+        budgetTitleLabel.text = "Budget"
+        budgetInfoLabel.text = ": " + (formatter.string(from: movie.budget as NSNumber) ?? "Not Available")
+        
+        revenueTitleLabel.text = "Revenue"
+        revenueInfoLabel.text = ": " + (formatter.string(from: movie.revenue as NSNumber) ?? "Not Available")
+        
+        runtimeTitleLabel.text = "Runtime"
+        if let runtime = movie.runtime{
+            runtimeInfoLabel.text = ": \(runtime) (Week)"
+        }
+        else{
+            runtimeInfoLabel.text = ": Not Available"
+        }
+        
+        homepageTitleLabel.text = "Homepage"
+        if let homepage = movie.homepage{
+            //TODO: Open inside application , do not redirect to Safari , WebView ?
+            let attributedString = NSMutableAttributedString(string: ": " + homepage)
+            let url = URL(string: homepage)!
+            
+            let linkRange = NSRange(location: 2, length: homepage.count)
+            attributedString.setAttributes([.foregroundColor: UIColor.blue], range: linkRange)
+            attributedString.setAttributes([.underlineStyle: NSUnderlineStyle.single.rawValue], range: linkRange)
+            attributedString.setAttributes([.link: url], range: linkRange)
+
+            self.homepageInfoLabel.attributedText = attributedString
+            self.homepageInfoLabel.isUserInteractionEnabled = true
+        }
+        else{
+            homepageInfoLabel.text = ": Not Available"
+        }
+        
+        companiesTitleLabel.text = "Companies"
+        companiesInfoLabel.text = ": " + movie.productionCompaniesCSV
+        
     }
     
     //MARK: - Gesture Recognizer Functions
@@ -175,6 +226,18 @@ class MovieDetailViewController: UIViewController {
             isFavourited = true
             AppConfig.config.favouriteList.append(movieID!)
             bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
+        }
+    }
+    
+    
+    @IBAction func homepageLinkClicked(_ sender: UITapGestureRecognizer) {
+        guard let movie = movie else {
+            return
+        }
+
+        if let homepage = movie.homepage{
+            let vc = SFSafariViewController(url: URL(string: homepage)!)
+            present(vc , animated: true)
         }
     }
     
@@ -256,6 +319,7 @@ extension MovieDetailViewController : UICollectionViewDataSource{
     
 }
 
+//MARK: - CollectionView Delegate Functions
 extension MovieDetailViewController : UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == castCollectionView){
@@ -269,11 +333,22 @@ extension MovieDetailViewController : UICollectionViewDelegate{
                 self.navigationController?.pushViewController(detailVC, animated: true)
             }
         }
+        else if (collectionView == recommendationsCollectionView){
+            if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: MovieDetailViewController.self)) as? MovieDetailViewController{
+                
+                //Preperation
+                if let indexPath = collectionView.indexPathsForSelectedItems{
+                    detailVC.movieID = recommendationList[indexPath[0].row].id
+                    collectionView.deselectItem(at: indexPath[0], animated: false)
+                }
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+        }
     }
 }
 
+//MARK: - CollectionView FlowLayout Functions
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
     // https://medium.com/geekculture/swift-implement-self-sizing-uicollectionview-cells-in-6-line-of-code-or-less-bf4944d62f9
     
 }
-

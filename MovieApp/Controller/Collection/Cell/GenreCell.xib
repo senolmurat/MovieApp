@@ -23,7 +23,7 @@
                         <color key="backgroundColor" systemColor="systemGray2Color"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVz-fy-lJb">
-                        <rect key="frame" x="15" y="4" width="100" height="32"/>
+                        <rect key="frame" x="8" y="4" width="114" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -32,11 +32,11 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="VVz-fy-lJb" secondAttribute="trailing" constant="15" id="6We-cv-bkh"/>
+                <constraint firstAttribute="trailing" secondItem="VVz-fy-lJb" secondAttribute="trailing" constant="8" id="6We-cv-bkh"/>
                 <constraint firstItem="VVz-fy-lJb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="TGK-Vq-E0D"/>
                 <constraint firstAttribute="bottom" secondItem="VVz-fy-lJb" secondAttribute="bottom" constant="4" id="UQn-rd-rUg"/>
                 <constraint firstItem="QnY-h2-zoh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="aGM-mn-dS6"/>
-                <constraint firstItem="VVz-fy-lJb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="eGM-k6-4Yl"/>
+                <constraint firstItem="VVz-fy-lJb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="eGM-k6-4Yl"/>
                 <constraint firstItem="QnY-h2-zoh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nBJ-DZ-sS7"/>
                 <constraint firstAttribute="trailing" secondItem="QnY-h2-zoh" secondAttribute="trailing" id="nnj-yu-Plx"/>
                 <constraint firstAttribute="bottom" secondItem="QnY-h2-zoh" secondAttribute="bottom" id="u0p-Et-AJR"/>
