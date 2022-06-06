@@ -274,5 +274,6 @@ extension MovieDetailViewController : UICollectionViewDelegate{
 
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
     // https://medium.com/geekculture/swift-implement-self-sizing-uicollectionview-cells-in-6-line-of-code-or-less-bf4944d62f9
+    
 }
 
