@@ -32,6 +32,12 @@ class SearchViewController: UIViewController {
         movieGenresCollectionView.delegate = self
         movieGenresCollectionView.dataSource = self
         
+        //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
+        //self.navigationItem.leftBarButtonItem = leftNavBarButton
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+        
+        
         //TODO: Localization
         GenreService().getMovieGenreList(language: "en-US", completion: { [self] result in
             switch result {
@@ -66,6 +72,7 @@ class SearchViewController: UIViewController {
     
 }
 
+//MARK: - CollectionView Data Source Functions
 extension SearchViewController: UICollectionViewDataSource{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -103,6 +110,7 @@ extension SearchViewController: UICollectionViewDataSource{
     
 }
 
+//MARK: - CollectionView Delegate Functions
 extension SearchViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == movieGenresCollectionView){
