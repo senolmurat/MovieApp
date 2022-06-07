@@ -16,8 +16,11 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var popularActorsCollectionView: UICollectionView!
     @IBOutlet weak var movieGenresCollectionView: UICollectionView!
     
+    var tableView : UITableView!
+    
     var genreList : [Genre] = []
     var peopleList : [PeopleListResult] = []
+    var searchResult : [MovieListResult] = []
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -34,8 +37,20 @@ class SearchViewController: UIViewController {
         
         //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
         //self.navigationItem.leftBarButtonItem = leftNavBarButton
+        searchBar.delegate = self
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
+        
+        let navigationBarHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 0
+        let tabBarHeight: CGFloat = self.navigationController?.tabBarController?.tabBar.frame.height ?? 0
+        let displayWidth: CGFloat = self.view.frame.width
+        let displayHeight: CGFloat = self.view.frame.height
+
+        tableView = UITableView(frame: CGRect(x: 0, y: navigationBarHeight, width: displayWidth, height: displayHeight - (navigationBarHeight + tabBarHeight)))
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.isHidden = true
+        self.view.addSubview(tableView)
         
         
         //TODO: Localization
@@ -68,6 +83,25 @@ class SearchViewController: UIViewController {
 
         self.movieGenresCollectionView.register(UINib(nibName: K.GenreCellNibName, bundle: nil), forCellWithReuseIdentifier: K.GenreCellIdentifier)
         self.popularActorsCollectionView.register(UINib(nibName: K.CastPicCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CastPicCellIdentifier)
+        self.tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
+    }
+    
+    func search(with query : String){
+        AlertManager.showLoadingIndicator(in: self)
+        tableView.isHidden = false
+        SearchService().searchMovie(query: query) { result in
+            switch result {
+            case .success(let response):
+                self.searchResult = response.results
+                DispatchQueue.main.async { [self] in
+                    tableView.reloadData()
+                }
+                AlertManager.dismissLoadingIndicator(in: self)
+            case .failure(let error):
+                //TODO: Network Error , Could not retrive genre lsit for movies
+                print(error)
+            }
+        }
     }
     
 }
@@ -128,4 +162,86 @@ extension SearchViewController: UICollectionViewDelegate{
             }
         }
     }
+}
+
+extension SearchViewController : UISearchBarDelegate{
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        AlertManager.dismissLoadingIndicator(in: self)
+        tableView.isHidden = true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText == ""){
+            searchBar.endEditing(true)
+            tableView.isHidden = true
+        }
+        else if (searchText.count >= 3){
+            tableView.isHidden = false
+            AlertManager.dismissLoadingIndicator(in: self)
+            search(with: searchText)
+        }
+        
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if let text = searchBar.text{
+            if text.count < 3{
+                return false
+            }
+        }
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        guard let query = searchBar.text else{
+            return
+        }
+        
+        search(with: query)
+    }
+    
+}
+
+//MARK: - UITableViewDelegate Functions
+extension SearchViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: MovieDetailViewController.self)) as? MovieDetailViewController{
+            
+            //Preperation
+            if let indexPath = tableView.indexPathForSelectedRow{
+                detailVC.movieID = searchResult[indexPath.row].id
+                tableView.deselectRow(at: indexPath, animated: false)
+            }
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+}
+
+//MARK: - UITableViewDataSource Functions
+extension SearchViewController: UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResult.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let movie = searchResult[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.MovieListCellIdentifier, for: indexPath) as! MovieCell
+        cell.configureMovie(with: movie)
+        return cell
+    }
+    
+    
 }

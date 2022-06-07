@@ -29,6 +29,7 @@ class MovieCell: UITableViewCell {
         let bookmarkGesture = UITapGestureRecognizer(target: self, action:  #selector (self.bookmarkClicked(_:)))
         self.bookmarkImageView.addGestureRecognizer(bookmarkGesture)
         bookmarkImageView.isUserInteractionEnabled = true
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -46,6 +46,11 @@ class MovieDetailViewController: UIViewController {
     
     private var isFavourited : Bool = false
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AlertManager.dismissLoadingIndicator(in: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +64,7 @@ class MovieDetailViewController: UIViewController {
         recommendationsCollectionView.dataSource = self
         
         if let movieID = movieID{
-            //AlertManager.showLoadingIndicator(in: self)
+            AlertManager.showLoadingIndicator(in: self)
             movieService.getMovieDetail(id: movieID) { result in
                 switch result {
                 case .success(let response):
@@ -194,17 +199,21 @@ class MovieDetailViewController: UIViewController {
         
         homepageTitleLabel.text = "Homepage"
         if let homepage = movie.homepage{
-            //TODO: Open inside application , do not redirect to Safari , WebView ?
-            let attributedString = NSMutableAttributedString(string: ": " + homepage)
-            let url = URL(string: homepage)!
             
-            let linkRange = NSRange(location: 2, length: homepage.count)
-            attributedString.setAttributes([.foregroundColor: UIColor.blue], range: linkRange)
-            attributedString.setAttributes([.underlineStyle: NSUnderlineStyle.single.rawValue], range: linkRange)
-            attributedString.setAttributes([.link: url], range: linkRange)
+            if let url = URL(string: homepage){
+                let attributedString = NSMutableAttributedString(string: ": " + homepage)
+                
+                let linkRange = NSRange(location: 2, length: homepage.count)
+                attributedString.setAttributes([.foregroundColor: UIColor.blue], range: linkRange)
+                attributedString.setAttributes([.underlineStyle: NSUnderlineStyle.single.rawValue], range: linkRange)
+                attributedString.setAttributes([.link: url], range: linkRange)
 
-            self.homepageInfoLabel.attributedText = attributedString
-            self.homepageInfoLabel.isUserInteractionEnabled = true
+                self.homepageInfoLabel.attributedText = attributedString
+                self.homepageInfoLabel.isUserInteractionEnabled = true
+            }
+            else{
+                homepageInfoLabel.text = ": Not Available"
+            }
         }
         else{
             homepageInfoLabel.text = ": Not Available"

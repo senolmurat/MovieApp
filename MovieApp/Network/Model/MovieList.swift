@@ -27,7 +27,7 @@ struct MovieListResult: Codable {
     let posterPath: String?
     let adult: Bool
     let overview: String
-    let releaseDate: String
+    let releaseDate: String?
     let genreIDS: [Int]
     let id: Int
     let originalTitle: String
