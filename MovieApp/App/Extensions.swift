@@ -47,3 +47,19 @@ extension UICollectionView {
         self.backgroundView = nil
     }
 }
+
+extension String{
+    func tryLocalizedDate() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: AppConfig.config.locale)
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'"
+        if let date = dateFormatter.date(from: self){
+            dateFormatter.setLocalizedDateFormatFromTemplate("YYYY dd MMMM")
+            return dateFormatter.string(from: date)
+        }
+        else{
+            return self
+        }
+        
+    }
+}

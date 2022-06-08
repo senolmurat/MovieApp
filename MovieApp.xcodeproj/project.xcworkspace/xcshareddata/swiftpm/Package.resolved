@@ -18,6 +18,15 @@
           "revision": "59eb199fdb8dd47733624e8b0277822d0232579e",
           "version": "7.2.2"
         }
+      },
+      {
+        "package": "Localize_Swift",
+        "repositoryURL": "https://github.com/marmelroy/Localize-Swift.git",
+        "state": {
+          "branch": null,
+          "revision": "0aa221fed0512772eaad04171d966b8d77b15212",
+          "version": "3.2.0"
+        }
       }
     ]
   },

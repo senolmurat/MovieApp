@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class FavouritesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    private let movieService : MovieServiceProtocol = MovieService()
+    private let movieService = MovieService()
     private var favouriteMovieIDList : [Int] = AppConfig.config.favouriteList
     private var favouriteMovieList : [Movie] = []
     private var pageCounter : Int = 1
@@ -36,7 +37,10 @@ class FavouritesViewController: UIViewController {
         
         //TODO: maybe show a text like "your favourite list is empty" ?
         //TODO: Localization
-        title = "Favourites"
+        title = "favourites_tab_title".localized()
+        if let searchTabBarItem = navigationController?.tabBarItem{
+            searchTabBarItem.title = "favourites_tab_title".localized()
+        }
 
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
@@ -47,7 +51,7 @@ class FavouritesViewController: UIViewController {
         favouriteMovieIDList = AppConfig.config.favouriteList
         favouriteMovieList.removeAll()
         for movieID in favouriteMovieIDList{
-            movieService.getMovieDetail(id: movieID) { [self] result in
+            movieService.getMovieDetail(id: movieID , language: AppConfig.config.languageISO) { [self] result in
                 switch result {
                 case .success(let response):
                     favouriteMovieList.append(response)

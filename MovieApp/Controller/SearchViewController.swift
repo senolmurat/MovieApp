@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class SearchViewController: UIViewController {
 
@@ -45,6 +46,10 @@ class SearchViewController: UIViewController {
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         
+        if let searchTabBarItem = navigationController?.tabBarItem{
+            searchTabBarItem.title = "search_tab_title".localized()
+        }
+        
         let navigationBarHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 0
         let tabBarHeight: CGFloat = self.navigationController?.tabBarController?.tabBar.frame.height ?? 0
         let displayWidth: CGFloat = self.view.frame.width
@@ -58,7 +63,7 @@ class SearchViewController: UIViewController {
         
         
         //TODO: Localization
-        GenreService().getMovieGenreList(language: "en-US", completion: { [self] result in
+        GenreService().getMovieGenreList(language: AppConfig.config.languageISO, completion: { [self] result in
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {
@@ -72,7 +77,7 @@ class SearchViewController: UIViewController {
         })
         
         //TODO: Localization
-        PersonService().getPopular(page: 1, language: "en-US") { result in
+        PersonService().getPopular(page: 1, language: AppConfig.config.languageISO) { result in
             switch result {
             case .success(let response):
                 DispatchQueue.main.async { [self] in
@@ -93,7 +98,7 @@ class SearchViewController: UIViewController {
     func search(with query : String){
         AlertManager.showLoadingIndicator(in: self)
         tableView.isHidden = false
-        searchService.searchMovie(query: query) { result in
+        searchService.searchMovie(language: AppConfig.config.languageISO ,query: query) { result in
             switch result {
             case .success(let response):
                 self.searchResult = response.results
@@ -235,7 +240,7 @@ extension SearchViewController: UITableViewDelegate{
                 //AlertManager.showLoadingIndicator(in: self)
                 AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
                 
-                searchService.searchMovie(query: query , page: pageCounter) { result in
+                searchService.searchMovie(language: AppConfig.config.languageISO ,query: query , page: pageCounter) { result in
                     switch result {
                     case .success(let response):
                         self.searchResult.append(contentsOf: response.results)

@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  MovieApp
+
+  Created by Murat ŞENOL on 8.06.2022.
+  
+*/
+
+"recommended_list_na" = "Recommended List Not Available...";
+
+"movie_na" = "Movie Not Found.";
+"movie_info_na" = "Movie information could not be retrieved.";
+"person_na" = "Person Not Found.";
+"person_info_na" = "Person information could not be retrieved.";
+"not_available" = "Not Available";
+"not_available_3dot" = "Not Available...";
+"unknown" = "Unknown";
+
+"birthday_unknown" = "Birthday Unknown";
+"deathday_unknown" = "Deathday Unknown";
+"place_of_birth_unknown" = "Place of Birth Unknown";
+
+"favourites_empty" = "Your Favourite Movies List is empty...";
+
+"movies_tab_title" = "Movies";
+"search_tab_title" = "Search";
+"favourites_tab_title" = "Favourites";
+
+"hour" = "Hour";
+"minute" = "Minute";

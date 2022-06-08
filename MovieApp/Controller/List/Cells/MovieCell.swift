@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Localize_Swift
 
 class MovieCell: UITableViewCell {
 
@@ -55,7 +56,12 @@ class MovieCell: UITableViewCell {
         genreLabel.text = movie.genresCSV
         overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
-        releaseDateLabel.text = movie.releaseDate
+        if let releaseDate = movie.releaseDate{
+            releaseDateLabel.text = releaseDate.tryLocalizedDate()
+        }
+        else{
+            releaseDateLabel.text = "unknown".localized()
+        }
     }
     
     func configureMovie(with movie : MovieListResult){
@@ -76,7 +82,12 @@ class MovieCell: UITableViewCell {
         genreLabel.text = movie.genresCSV
         overviewLabel.text = movie.overview
         ratingLabel.text = String(movie.voteAverage)
-        releaseDateLabel.text = movie.releaseDate
+        if let releaseDate = movie.releaseDate{
+            releaseDateLabel.text = releaseDate.tryLocalizedDate()
+        }
+        else{
+            releaseDateLabel.text = "unknown".localized()
+        }
         
     }
     

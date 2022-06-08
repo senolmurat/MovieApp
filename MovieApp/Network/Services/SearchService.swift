@@ -14,13 +14,12 @@ protocol SearchServiceProtocol {
 struct SearchService: SearchServiceProtocol {
     
     //TODO: make an endpoint builder with query items
-    //TODO: LOCALIZATION
     
     private let network = Network()
     
     func searchMovie(language : String = "en-US" , query : String, page : Int = 1 , completion: @escaping (Result<MovieList, NetworkError>) -> Void){
-        print(AppConfig.config.baseURL + "/search/movie" + "?api_key=\(AppConfig.config.apikey)" + "&lanugage=\(language)" + "&query=\(query)" + "&page=\(page)")
-        let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/search/movie" + "?api_key=\(AppConfig.config.apikey)" + "&lanugage=\(language)" + "&query=\(query)" + "&page=\(page)")!)
+        print(AppConfig.config.baseURL + "/search/movie" + "?api_key=\(AppConfig.config.apikey)" + "&language=\(language)" + "&query=\(query)" + "&page=\(page)")
+        let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/search/movie" + "?api_key=\(AppConfig.config.apikey)" + "&language=\(language)" + "&query=\(query)" + "&page=\(page)")!)
         network.performRequest(request: urlRequest, completion: completion)
     }
     

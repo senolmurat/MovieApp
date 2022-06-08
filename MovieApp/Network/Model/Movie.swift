@@ -22,7 +22,7 @@ struct Movie: Codable {
     let posterPath: String?
     let productionCompanies: [ProductionCompany]
     let productionCountries: [ProductionCountry]
-    let releaseDate: String
+    let releaseDate: String?
     let revenue: Int
     let runtime: Int?
     let spokenLanguages: [SpokenLanguage]

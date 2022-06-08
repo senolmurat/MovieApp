@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import Localize_Swift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set([] , forKey: K.favouritedListKey)
         }
         
-        //TODO: Localization
-        GenreService().getMovieGenreList(language: "en-US", completion: { result in
+        GenreService().getMovieGenreList(language: AppConfig.config.languageISO, completion: { result in
             switch result {
             case .success(let response):
                 for genre in response.genres{
@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error)
             }
         })
+        
+        Localize.setCurrentLanguage(AppConfig.config.locale)
         
         return true
     }

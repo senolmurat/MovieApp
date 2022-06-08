@@ -14,7 +14,6 @@ protocol GenreServiceProtocol {
 
 struct GenreService: GenreServiceProtocol {
     //TODO: make an endpoint builder with query items
-    //TODO: LOCALIZATION
     
     private let network = Network()
     

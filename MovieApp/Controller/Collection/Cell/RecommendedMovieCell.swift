@@ -18,7 +18,6 @@ class RecommendedMovieCell: UICollectionViewCell {
     }
     
     func configure(with movie : MovieListResult){
-        //titleLabel.text = movie.title
         ImageManager.setImage(withPath: movie.posterPath, on: posterImageView, placeholder: UIImage(systemName: K.posterPlaceholder)!)
         //ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 10, placeholder: UIImage(systemName: K.posterPlaceholder)!)
     }

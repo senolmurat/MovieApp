@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import Localize_Swift
 
 class MovieDetailViewController: UIViewController {
     
@@ -23,7 +24,7 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var releaseDateLable: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var bookmarkImageView: UIImageView!
@@ -68,7 +69,7 @@ class MovieDetailViewController: UIViewController {
         
         if let movieID = movieID{
             AlertManager.showLoadingIndicator(in: self)
-            movieService.getMovieDetail(id: movieID) { result in
+            movieService.getMovieDetail(id: movieID ,language: AppConfig.config.languageISO) { result in
                 switch result {
                 case .success(let response):
                     self.movie = response
@@ -93,7 +94,7 @@ class MovieDetailViewController: UIViewController {
 //                    }
                     
                     //GET Recommendations
-                    self.movieService.getRecommendations(id: response.id) { result in
+                    self.movieService.getRecommendations(id: response.id , language: AppConfig.config.languageISO) { result in
                         switch result {
                         case .success(let response):
                             //TODO: Maybe pagination ? Limit For now...
@@ -104,7 +105,7 @@ class MovieDetailViewController: UIViewController {
                                 }
                             }
                             else{
-                                self.recommendationsCollectionView.setEmptyMessage("Recommendations Not Available...")
+                                self.recommendationsCollectionView.setEmptyMessage("recommended_list_na".localized())
                             }
                         case .failure(let error):
                             //TODO: maybe show alertbox ?
@@ -113,7 +114,7 @@ class MovieDetailViewController: UIViewController {
                     }
                         
                     //GET Credits
-                    self.movieService.getCredits(movieID: response.id) { result in
+                    self.movieService.getCredits(movieID: response.id , language: AppConfig.config.languageISO) { result in
                         switch result {
                         case .success(let response):
                             //TODO: Maybe pagination ? Limit For now...
@@ -133,8 +134,7 @@ class MovieDetailViewController: UIViewController {
             }
         }
         else{
-            //TODO: Localization Support
-            AlertManager.showInfoAlertBox(with: "Movie Not Found", in: self) { action in
+            AlertManager.showInfoAlertBox(with: "movie_na".localized(), in: self) { action in
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -182,7 +182,14 @@ class MovieDetailViewController: UIViewController {
         }
         
         titleLabel.text = movie.title
-        releaseDateLable.text = movie.releaseDate
+        
+        
+        if let releaseDate = movie.releaseDate{
+            releaseDateLabel.text = releaseDate.tryLocalizedDate()
+        }
+        else{
+            releaseDateLabel.text = "unknown".localized()
+        }
         ratingLabel.text = String(movie.voteAverage)
         //overviewLabel.text = movie.overview
         //taglineLabel.text = movie.tagline
@@ -201,32 +208,27 @@ class MovieDetailViewController: UIViewController {
             taglineLabel.isHidden = true
         }
         
-        let formatter = NumberFormatter()
-        formatter.locale = Locale(identifier: "en_US") // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
-        formatter.numberStyle = .currency
+        let currencyformatter = NumberFormatter()
+        currencyformatter.locale = Locale(identifier: "en_US") // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
+        currencyformatter.numberStyle = .currency
+    
+        budgetInfoLabel.text = (currencyformatter.string(from: movie.budget as NSNumber) ?? "not_available".localized())
         
-        //TODO: Localization
-        budgetTitleLabel.text = "Budget"
-        budgetInfoLabel.text = ": " + (formatter.string(from: movie.budget as NSNumber) ?? "Not Available")
+        revenueInfoLabel.text = (currencyformatter.string(from: movie.revenue as NSNumber) ?? "not_available".localized())
         
-        revenueTitleLabel.text = "Revenue"
-        revenueInfoLabel.text = ": " + (formatter.string(from: movie.revenue as NSNumber) ?? "Not Available")
-        
-        runtimeTitleLabel.text = "Runtime"
         if let runtime = movie.runtime{
-            runtimeInfoLabel.text = ": \(runtime / 60) Hour \(runtime % 60) Minute"
+            runtimeInfoLabel.text = String(runtime / 60) + " " + "hour".localized() + " " + String(runtime % 60) + " " + "minute".localized()
         }
         else{
-            runtimeInfoLabel.text = ": Not Available"
+            runtimeInfoLabel.text = "not_available".localized()
         }
         
-        homepageTitleLabel.text = "Homepage"
         if let homepage = movie.homepage{
             
             if let url = URL(string: homepage){
-                let attributedString = NSMutableAttributedString(string: ": " + homepage)
+                let attributedString = NSMutableAttributedString(string: homepage)
                 
-                let linkRange = NSRange(location: 2, length: homepage.count)
+                let linkRange = NSRange(location: 0, length: homepage.count)
                 attributedString.setAttributes([.foregroundColor: UIColor.blue], range: linkRange)
                 attributedString.setAttributes([.underlineStyle: NSUnderlineStyle.single.rawValue], range: linkRange)
                 attributedString.setAttributes([.link: url], range: linkRange)
@@ -235,15 +237,14 @@ class MovieDetailViewController: UIViewController {
                 self.homepageInfoLabel.isUserInteractionEnabled = true
             }
             else{
-                homepageInfoLabel.text = ": Not Available"
+                homepageInfoLabel.text = "not_available".localized()
             }
         }
         else{
-            homepageInfoLabel.text = ": Not Available"
+            homepageInfoLabel.text = "not_available".localized()
         }
         
-        companiesTitleLabel.text = "Companies"
-        companiesInfoLabel.text = ": " + movie.productionCompaniesCSV
+        companiesInfoLabel.text = movie.productionCompaniesCSV
         
     }
     

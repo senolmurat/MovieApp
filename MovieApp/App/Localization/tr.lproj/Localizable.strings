@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  MovieApp
+
+  Created by Murat ŞENOL on 8.06.2022.
+  
+*/
+
+"recommended_list_na" = "Önerilen Fİlmler Mevcut Değil...";
+
+"movie_na" = "Film Bulunamadı.";
+"movie_info_na" = "Film bilgisi alınamadı.";
+"person_na" = "Kişi bulunamadı.";
+"person_info_na" = "Kişi bilgisi alınamadı.";
+"not_available" = "Mevcut Değil";
+"not_available_3dot" = "Mevcut Değil...";
+"unknown" = "Bilinmiyor";
+
+"birthday_unknown" = "Doğum günü bilinmiyor";
+"deathday_unknown" = "Ölüm günü bilinmiyor";
+"place_of_birth_unknown" = "Doğum yeri bilinmiyor";
+
+"favourites_empty" = "Beğendiğiniz Dilmler Listesi boş";
+
+"movies_tab_title" = "Filmler";
+"search_tab_title" = "Ara";
+"favourites_tab_title" = "Beğenilenler";
+
+"hour" = "Saat";
+"minute" = "Dakika";

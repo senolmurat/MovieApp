@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class MovieViewController: UIViewController {
     
@@ -13,7 +14,7 @@ class MovieViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    private let movieService : MovieServiceProtocol = MovieService()
+    private let movieService = MovieService()
     private var movieList : [MovieListResult] = []
     private var pageCounter : Int = 1
     private var totalMovieCount: Int?
@@ -30,7 +31,7 @@ class MovieViewController: UIViewController {
         
         title = K.appNameWithEmoji
         if let moviesTabBarItem = navigationController?.tabBarItem{
-            moviesTabBarItem.title = "Movies"
+            moviesTabBarItem.title = "movies_tab_title".localized()
             moviesTabBarItem.image = UIImage(systemName: "film")
             moviesTabBarItem.selectedImage = UIImage(systemName: "film")
         }
@@ -39,7 +40,7 @@ class MovieViewController: UIViewController {
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
         AlertManager.showLoadingIndicator(in: self)
-        movieService.getPopular(page: pageCounter){ result in
+        movieService.getPopular(page: pageCounter ,language: AppConfig.config.languageISO){ result in
             switch result {
             case .success(let response):
                 self.pageCounter += 1
@@ -93,7 +94,7 @@ extension MovieViewController: UITableViewDelegate{
                 //AlertManager.showLoadingIndicator(in: self)
                 AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
                 
-                movieService.getPopular(page: pageCounter){ result in
+                movieService.getPopular(page: pageCounter , language: AppConfig.config.languageISO){ result in
                     switch result {
                     case .success(let response):
                         self.pageCounter += 1

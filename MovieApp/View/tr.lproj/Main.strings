@@ -1,0 +1,64 @@
+
+/* Class = "UILabel"; text = "Person Name"; ObjectID = "1Nd-tS-Mqu"; */
+"1Nd-tS-Mqu.text" = "İsim";
+
+/* Class = "UITabBarItem"; title = "Movies"; ObjectID = "90W-XK-v10"; */
+"90W-XK-v10.title" = "Filmler";
+
+/* Class = "UILabel"; text = "Popular Actors"; ObjectID = "9CR-c5-u0f"; */
+"9CR-c5-u0f.text" = "Popüler Aktörler";
+
+/* Class = "UILabel"; text = "Cast"; ObjectID = "Apo-p6-10P"; */
+"Apo-p6-10P.text" = "Oyuncu Kadrosu";
+
+/* Class = "UILabel"; text = "Birthday-Deathday"; ObjectID = "CkH-Pk-Cp1"; */
+"CkH-Pk-Cp1.text" = "Doğum Günü-Ölüm Günü";
+
+/* Class = "UILabel"; text = "Revenue"; ObjectID = "DPF-aL-xIo"; */
+"DPF-aL-xIo.text" = "Hasılat";
+
+/* Class = "UILabel"; text = "Biography:"; ObjectID = "Ewp-4M-ekX"; */
+"Ewp-4M-ekX.text" = "Biografi:";
+
+/* Class = "UILabel"; text = "Movie Genres"; ObjectID = "K2f-qx-mh8"; */
+"K2f-qx-mh8.text" = "Movie Genres";
+
+/* Class = "UILabel"; text = "Release Date"; ObjectID = "Kuv-0a-ilq"; */
+"Kuv-0a-ilq.text" = "Yayınlanma Tarihi";
+
+/* Class = "UILabel"; text = "Place Of Birth"; ObjectID = "MAl-TR-fLS"; */
+"MAl-TR-fLS.text" = "Doğum Yeri";
+
+/* Class = "UILabel"; text = "Runtime"; ObjectID = "Mv6-1K-RFi"; */
+"Mv6-1K-RFi.text" = "Süre";
+
+/* Class = "UILabel"; text = "Movie Title"; ObjectID = "Wzl-Vo-jM5"; */
+"Wzl-Vo-jM5.text" = "Film İsmi";
+
+/* Class = "UISearchBar"; placeholder = "Search Something..."; ObjectID = "Xql-bf-4TL"; */
+"Xql-bf-4TL.placeholder" = "Bir Şeyler Arayın...";
+
+/* Class = "UISearchBar"; Xql-bf-4TL.scopeButtonTitles[0] = "Title"; ObjectID = "Xql-bf-4TL"; */
+"Xql-bf-4TL.scopeButtonTitles[0]" = "Title";
+
+/* Class = "UISearchBar"; Xql-bf-4TL.scopeButtonTitles[1] = "Title"; ObjectID = "Xql-bf-4TL"; */
+"Xql-bf-4TL.scopeButtonTitles[1]" = "Title";
+
+/* Class = "UILabel"; text = "Companies"; ObjectID = "Xwb-cZ-lN4"; */
+"Xwb-cZ-lN4.text" = "Şirketler";
+
+/* Class = "UILabel"; text = "Homepage"; ObjectID = "aCC-HW-2Po"; */
+"aCC-HW-2Po.text" = "Anasayfa";
+
+/* Class = "UILabel"; text = "Budget"; ObjectID = "k30-SZ-jCk"; */
+"k30-SZ-jCk.text" = "Bütçe";
+
+/* Class = "UILabel"; text = "Additional Info"; ObjectID = "l68-4Y-LuG"; */
+"l68-4Y-LuG.text" = "Ek Bilgiler";
+
+/* Class = "UILabel"; text = "Recommendations"; ObjectID = "qjU-tn-IU5"; */
+"qjU-tn-IU5.text" = "Sizin İçin Önerilenler";
+
+/* Class = "UILabel"; text = "Tagline"; ObjectID = "vxL-wK-W6i"; */
+"vxL-wK-W6i.text" = "Önsöz";
+
