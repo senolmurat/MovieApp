@@ -51,6 +51,8 @@
 		6FB6095E284A4A200049C4E1 /* PersonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB6095D284A4A200049C4E1 /* PersonService.swift */; };
 		6FCBFD4F2850AE5000EF313A /* Localize_Swift in Frameworks */ = {isa = PBXBuildFile; productRef = 6FCBFD4E2850AE5000EF313A /* Localize_Swift */; };
 		6FCBFD5F2850DB1500EF313A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FCBFD612850DB1500EF313A /* Localizable.strings */; };
+		6FCBFD672850FC3100EF313A /* MovieLessDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCBFD652850FC3100EF313A /* MovieLessDetailCell.swift */; };
+		6FCBFD682850FC3100EF313A /* MovieLessDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FCBFD662850FC3100EF313A /* MovieLessDetailCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +110,8 @@
 		6FCBFD602850DB1500EF313A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FCBFD622850DB1F00EF313A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FCBFD642850E06400EF313A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		6FCBFD652850FC3100EF313A /* MovieLessDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLessDetailCell.swift; sourceTree = "<group>"; };
+		6FCBFD662850FC3100EF313A /* MovieLessDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieLessDetailCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +294,8 @@
 			children = (
 				6F88DA6D284609A800A63818 /* MovieCell.swift */,
 				6F88DA6E284609A800A63818 /* MovieCell.xib */,
+				6FCBFD652850FC3100EF313A /* MovieLessDetailCell.swift */,
+				6FCBFD662850FC3100EF313A /* MovieLessDetailCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 			files = (
 				6F1D0D2A284503F200E24E53 /* LaunchScreen.storyboard in Resources */,
 				6F1D0D27284503F200E24E53 /* Assets.xcassets in Resources */,
+				6FCBFD682850FC3100EF313A /* MovieLessDetailCell.xib in Resources */,
 				6F88DA70284609A800A63818 /* MovieCell.xib in Resources */,
 				6F1D0D22284503F100E24E53 /* Main.storyboard in Resources */,
 				6FCBFD5F2850DB1500EF313A /* Localizable.strings in Resources */,
@@ -410,6 +417,7 @@
 				6F1D0D3F28450C8E00E24E53 /* FavouritesViewController.swift in Sources */,
 				6F1D0D47284516AB00E24E53 /* Company.swift in Sources */,
 				6F1D0D4B28451EB600E24E53 /* People.swift in Sources */,
+				6FCBFD672850FC3100EF313A /* MovieLessDetailCell.swift in Sources */,
 				6F88DA842846553300A63818 /* Network.swift in Sources */,
 				6F5676F6284E5B300051EE5D /* CastPicCell.swift in Sources */,
 				6F1D0D3D28450C8100E24E53 /* SearchViewController.swift in Sources */,

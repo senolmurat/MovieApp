@@ -32,25 +32,27 @@ class FavouritesViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 136
         
         totalMovieCount = favouriteMovieIDList.count
         
-        //TODO: maybe show a text like "your favourite list is empty" ?
-        //TODO: Localization
         title = "favourites_tab_title".localized()
         if let searchTabBarItem = navigationController?.tabBarItem{
             searchTabBarItem.title = "favourites_tab_title".localized()
         }
 
-        tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
+        tableView.register(UINib(nibName: K.MovieListLessDetailNibName, bundle: nil), forCellReuseIdentifier: K.MovieListLessDetailCellIdentifier)
         
     }
     
     func loadData(){
         //Maybe hold the entire movie object instead of just the id ?
+        
         favouriteMovieIDList = AppConfig.config.favouriteList
         favouriteMovieList.removeAll()
         for movieID in favouriteMovieIDList{
+            
             movieService.getMovieDetail(id: movieID , language: AppConfig.config.languageISO) { [self] result in
                 switch result {
                 case .success(let response):
@@ -79,7 +81,7 @@ extension FavouritesViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if favouriteMovieList.count == 0 {
-            self.tableView.setEmptyMessage("Your Favourite Movies List is empty...")
+            self.tableView.setEmptyMessage("favourites_empty".localized())
         } else {
             self.tableView.restore()
         }
@@ -88,7 +90,7 @@ extension FavouritesViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = favouriteMovieList[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.MovieListCellIdentifier, for: indexPath) as! MovieCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.MovieListLessDetailCellIdentifier, for: indexPath) as! MovieLessDetailCell
         cell.configureMovie(with: movie)
         return cell
     }

@@ -44,7 +44,9 @@ class SearchViewController: UIViewController {
         //self.navigationItem.leftBarButtonItem = leftNavBarButton
         searchBar.delegate = self
         searchBar.sizeToFit()
+        searchBar.backgroundColor = UIColor.systemBackground
         navigationItem.titleView = searchBar
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         if let searchTabBarItem = navigationController?.tabBarItem{
             searchTabBarItem.title = "search_tab_title".localized()
@@ -58,6 +60,7 @@ class SearchViewController: UIViewController {
         tableView = UITableView(frame: CGRect(x: 0, y: navigationBarHeight, width: displayWidth, height: displayHeight - (navigationBarHeight + tabBarHeight)))
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         tableView.isHidden = true
         self.view.addSubview(tableView)
         
@@ -92,7 +95,7 @@ class SearchViewController: UIViewController {
 
         self.movieGenresCollectionView.register(UINib(nibName: K.GenreCellNibName, bundle: nil), forCellWithReuseIdentifier: K.GenreCellIdentifier)
         self.popularActorsCollectionView.register(UINib(nibName: K.CastPicCellNibName, bundle: nil), forCellWithReuseIdentifier: K.CastPicCellIdentifier)
-        self.tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
+        self.tableView.register(UINib(nibName: K.MovieListLessDetailNibName, bundle: nil), forCellReuseIdentifier: K.MovieListLessDetailCellIdentifier)
     }
     
     func search(with query : String){
@@ -284,7 +287,7 @@ extension SearchViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = searchResult[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.MovieListCellIdentifier, for: indexPath) as! MovieCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.MovieListLessDetailCellIdentifier, for: indexPath) as! MovieLessDetailCell
         cell.configureMovie(with: movie)
         return cell
     }

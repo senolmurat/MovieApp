@@ -28,6 +28,7 @@ class MovieViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = (view.bounds.width / 16) * 9
         
         title = K.appNameWithEmoji
         if let moviesTabBarItem = navigationController?.tabBarItem{

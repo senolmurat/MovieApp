@@ -1,27 +1,22 @@
 //
-//  MovieCell.swift
+//  MovieLessDetailCell.swift
 //  MovieApp
 //
-//  Created by Murat ŞENOL on 31.05.2022.
+//  Created by Murat ŞENOL on 8.06.2022.
 //
 
 import UIKit
-import Kingfisher
-import Localize_Swift
 
-class MovieCell: UITableViewCell {
-    
-    @IBOutlet weak var backdropImageView: UIImageView!
+class MovieLessDetailCell: UITableViewCell {
+
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var movieNameLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
-    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var bookmarkImageView: UIImageView!
+    @IBOutlet weak var view: UIView!
     private var isFavourited : Bool = false
     private var movieID : Int?
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,25 +26,27 @@ class MovieCell: UITableViewCell {
         self.bookmarkImageView.addGestureRecognizer(bookmarkGesture)
         bookmarkImageView.isUserInteractionEnabled = true
         
+        view.layer.cornerRadius = 6.0
+        view.clipsToBounds = true
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
     
     func configureMovie(with movie : Movie){
         
         movieID = movie.id
         
-        ImageManager.setImage(withPath: movie.backdropPath, on: backdropImageView)
-        ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
+        //ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
+        ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 2)
         
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
         bookmarkImageView.image = self.isFavourited ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
         
-        movieNameLabel.text = movie.title
-        genreLabel.text = movie.genresCSV
-        overviewLabel.text = movie.overview
+        titleLabel.text = movie.title
         ratingLabel.text = String(movie.voteAverage)
         if let releaseDate = movie.releaseDate{
             releaseDateLabel.text = releaseDate.tryLocalizedDate()
@@ -62,15 +59,13 @@ class MovieCell: UITableViewCell {
     func configureMovie(with movie : MovieListResult){
         movieID = movie.id
         
-        ImageManager.setImage(withPath: movie.backdropPath, on: backdropImageView)
-        ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
+        //ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
+        ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 2)
         
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
         bookmarkImageView.image = self.isFavourited ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
         
-        movieNameLabel.text = movie.title
-        genreLabel.text = movie.genresCSV
-        overviewLabel.text = movie.overview
+        titleLabel.text = movie.title
         ratingLabel.text = String(movie.voteAverage)
         if let releaseDate = movie.releaseDate{
             releaseDateLabel.text = releaseDate.tryLocalizedDate()
