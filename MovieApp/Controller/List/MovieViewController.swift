@@ -38,6 +38,7 @@ class MovieViewController: UIViewController {
         
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
+        AlertManager.showLoadingIndicator(in: self)
         movieService.getPopular(page: pageCounter){ result in
             switch result {
             case .success(let response):
@@ -46,6 +47,7 @@ class MovieViewController: UIViewController {
                 self.movieList.append(contentsOf: response.results)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    AlertManager.dismissLoadingIndicator(in: self)
                 }
             case .failure(let error):
                 print(error)

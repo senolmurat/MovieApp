@@ -22,6 +22,10 @@ class SearchViewController: UIViewController {
     var peopleList : [PeopleListResult] = []
     var searchResult : [MovieListResult] = []
     
+    var pageCounter : Int = 1
+    var totalResultCount : Int?
+    let searchService = SearchService()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -89,10 +93,12 @@ class SearchViewController: UIViewController {
     func search(with query : String){
         AlertManager.showLoadingIndicator(in: self)
         tableView.isHidden = false
-        SearchService().searchMovie(query: query) { result in
+        searchService.searchMovie(query: query) { result in
             switch result {
             case .success(let response):
                 self.searchResult = response.results
+                self.pageCounter = 1
+                self.totalResultCount = response.totalResults
                 DispatchQueue.main.async { [self] in
                     tableView.reloadData()
                 }
@@ -211,6 +217,41 @@ extension SearchViewController : UISearchBarDelegate{
 
 //MARK: - UITableViewDelegate Functions
 extension SearchViewController: UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == searchResult.count - 1{
+            
+            guard let totalResultCount = totalResultCount else{
+                return
+            }
+            
+            guard let query = searchBar.text else{
+                return
+            }
+            
+            //Check if there are anymore characters to load
+            if searchResult.count < totalResultCount{
+                //Load more content
+                //AlertManager.showLoadingIndicator(in: self)
+                AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
+                
+                searchService.searchMovie(query: query , page: pageCounter) { result in
+                    switch result {
+                    case .success(let response):
+                        self.searchResult.append(contentsOf: response.results)
+                        self.pageCounter += 1
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        AlertManager.dismissLoadingIndicator(in: self)
+                    case .failure(let error):
+                        //TODO: Network Error , Could not retrive genre lsit for movies
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: MovieDetailViewController.self)) as? MovieDetailViewController{

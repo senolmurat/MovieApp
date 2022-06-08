@@ -27,7 +27,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var bookmarkImageView: UIImageView!
-    
+    @IBOutlet weak var taglineLabel: UILabel!
     
     @IBOutlet weak var budgetTitleLabel: UILabel!
     @IBOutlet weak var budgetInfoLabel: UILabel!
@@ -40,6 +40,10 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var companiesTitleLabel: UILabel!
     @IBOutlet weak var companiesInfoLabel: UILabel!
     
+    @IBOutlet weak var castTitleLabel: UILabel!
+    @IBOutlet weak var additionalTitleLabel: UILabel!
+    @IBOutlet weak var recommandationsTitleLabel: UILabel!
+    
     @IBOutlet weak var genreCollectionView: UICollectionView!
     @IBOutlet weak var castCollectionView: UICollectionView!
     @IBOutlet weak var recommendationsCollectionView: UICollectionView!
@@ -48,7 +52,6 @@ class MovieDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AlertManager.dismissLoadingIndicator(in: self)
     }
     
     override func viewDidLoad() {
@@ -73,7 +76,7 @@ class MovieDetailViewController: UIViewController {
                         self.title = response.title
                         self.configureMovieDetail(with: response)
                         self.genreCollectionView.reloadData()
-                        //AlertManager.dismiss(in: self, animated: true)
+                        AlertManager.dismissLoadingIndicator(in: self)
                     }
                     
                     //TODO: Kinda unnecessary since backdrop images are a bunch of photoshopped posters ¯\_(ツ)_/¯
@@ -94,9 +97,14 @@ class MovieDetailViewController: UIViewController {
                         switch result {
                         case .success(let response):
                             //TODO: Maybe pagination ? Limit For now...
-                            self.recommendationList.append(contentsOf: response.results.prefix(AppConfig.config.MaxRecommendedMovieCount))
-                            DispatchQueue.main.async {
-                                self.recommendationsCollectionView.reloadData()
+                            if response.results.count != 0 {
+                                self.recommendationList.append(contentsOf: response.results.prefix(AppConfig.config.MaxRecommendedMovieCount))
+                                DispatchQueue.main.async {
+                                    self.recommendationsCollectionView.reloadData()
+                                }
+                            }
+                            else{
+                                self.recommendationsCollectionView.setEmptyMessage("Recommendations Not Available...")
                             }
                         case .failure(let error):
                             //TODO: maybe show alertbox ?
@@ -176,7 +184,22 @@ class MovieDetailViewController: UIViewController {
         titleLabel.text = movie.title
         releaseDateLable.text = movie.releaseDate
         ratingLabel.text = String(movie.voteAverage)
-        overviewLabel.text = movie.overview
+        //overviewLabel.text = movie.overview
+        //taglineLabel.text = movie.tagline
+        
+        if let overview = movie.overview{
+            overviewLabel.text = overview
+        }
+        else{
+            overviewLabel.isHidden = true
+        }
+        
+        if let tagline = movie.tagline{
+            taglineLabel.text = tagline
+        }
+        else{
+            taglineLabel.isHidden = true
+        }
         
         let formatter = NumberFormatter()
         formatter.locale = Locale(identifier: "en_US") // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
@@ -191,7 +214,7 @@ class MovieDetailViewController: UIViewController {
         
         runtimeTitleLabel.text = "Runtime"
         if let runtime = movie.runtime{
-            runtimeInfoLabel.text = ": \(runtime) (Week)"
+            runtimeInfoLabel.text = ": \(runtime / 60) Hour \(runtime % 60) Minute"
         }
         else{
             runtimeInfoLabel.text = ": Not Available"

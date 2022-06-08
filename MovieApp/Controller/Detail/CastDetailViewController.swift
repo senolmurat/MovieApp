@@ -22,21 +22,26 @@ class CastDetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let personID = personID{
+            AlertManager.showLoadingIndicator(in: self)
             personService.getDetails(personID: personID) { result in
                 switch result {
                 case .success(let response):
                     DispatchQueue.main.async {
                         self.configureCastDetail(with: response)
+                        AlertManager.dismissLoadingIndicator(in: self)
                     }
                 case .failure(let error):
                     //TODO: maybe show alertbox ?
                     print(error)
+                    AlertManager.showInfoAlertBox(with: "Person info could not be retrived", in: self) { action in
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
         else{
             //TODO: Localization Support
-            AlertManager.showInfoAlertBox(with: "Movie Not Found", in: self) { action in
+            AlertManager.showInfoAlertBox(with: "Person Not Found", in: self) { action in
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -67,7 +72,7 @@ class CastDetailViewController: UIViewController {
             birthdayLabel.text! += " | " + deathday
         }
         placeOfBirthLabel.text = person.placeOfBirth ?? "Place of Birth Unknown"
-        biographyLabel.text = person.biography
+        biographyLabel.text = person.biography.isEmpty ? "Not Available..." : person.biography
         
     }
     

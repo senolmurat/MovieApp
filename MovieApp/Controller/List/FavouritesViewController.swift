@@ -43,9 +43,9 @@ class FavouritesViewController: UIViewController {
     }
     
     func loadData(){
+        //Maybe hold the entire movie object instead of just the id ?
         favouriteMovieIDList = AppConfig.config.favouriteList
         favouriteMovieList.removeAll()
-        //TODO: !!!!!! if there are any failure cases then it wont reload tableView data !!!!!!
         for movieID in favouriteMovieIDList{
             movieService.getMovieDetail(id: movieID) { [self] result in
                 switch result {
