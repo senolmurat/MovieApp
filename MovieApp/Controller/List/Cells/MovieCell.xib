@@ -99,6 +99,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
+                <color key="backgroundColor" name="AppBackgroundColor"/>
                 <constraints>
                     <constraint firstItem="kc4-NU-jZu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5PM-nS-9pQ"/>
                     <constraint firstItem="wI2-RJ-qGl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="6FU-Vu-0jF"/>
@@ -137,6 +138,9 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="AppBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="BackShadowColor">
             <color red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
