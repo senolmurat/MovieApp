@@ -8,6 +8,12 @@
 import UIKit
 import Localize_Swift
 
+enum TableViewContentType : Int {
+    case none = 0
+    case searchResult = 1
+    case discoverResult = 2
+}
+
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -16,6 +22,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var popularActorsCollectionView: UICollectionView!
     @IBOutlet weak var movieGenresCollectionView: UICollectionView!
+    
+    private var tableViewContentType : Int = TableViewContentType.none.rawValue
     
     var tableView : UITableView!
     
@@ -26,6 +34,9 @@ class SearchViewController: UIViewController {
     var pageCounter : Int = 1
     var totalResultCount : Int?
     let searchService = SearchService()
+    let movieService = MovieService()
+    
+    var genreID : Int?
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -99,8 +110,35 @@ class SearchViewController: UIViewController {
         searchService.searchMovie(language: AppConfig.config.languageISO ,query: query) { result in
             switch result {
             case .success(let response):
+                self.tableViewContentType = TableViewContentType.searchResult.rawValue
                 self.searchResult = response.results
                 self.pageCounter = 1
+                self.totalResultCount = response.totalResults
+                DispatchQueue.main.async { [self] in
+                    tableView.reloadData()
+                }
+                AlertManager.dismissLoadingIndicator(in: self)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func getGenre(){
+        
+        guard let genreID = genreID else {
+            return
+        }
+        
+        AlertManager.showLoadingIndicator(in: self)
+        tableView.isHidden = false
+        self.pageCounter = 1
+        movieService.getDiscoverWithGenre(page: pageCounter, language: AppConfig.config.languageISO, sortBy: SortBy.popularity_desc.rawValue, minVoteCount: 10, withGenre: genreID) { result in
+            switch result {
+            case .success(let response):
+                self.tableViewContentType = TableViewContentType.discoverResult.rawValue
+                self.searchResult = response.results
+                self.pageCounter += 1
                 self.totalResultCount = response.totalResults
                 DispatchQueue.main.async { [self] in
                     tableView.reloadData()
@@ -156,7 +194,10 @@ extension SearchViewController: UICollectionViewDataSource{
 extension SearchViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == movieGenresCollectionView){
-            
+            if let indexPath = collectionView.indexPathsForSelectedItems{
+                genreID = genreList[indexPath[0].row].id
+                getGenre()
+            }
         }
         else if (collectionView == popularActorsCollectionView){
             if let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: CastDetailViewController.self)) as? CastDetailViewController{
@@ -232,20 +273,45 @@ extension SearchViewController: UITableViewDelegate{
                 return
             }
             
-            guard let query = searchBar.text else{
-                return
+            if(tableViewContentType == TableViewContentType.searchResult.rawValue){
+                guard let query = searchBar.text else{
+                    return
+                }
+                
+                //Check if there are anymore characters to load
+                if searchResult.count < totalResultCount{
+                    //Load more content
+                    AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
+                    
+                    searchService.searchMovie(language: AppConfig.config.languageISO ,query: query , page: pageCounter) { result in
+                        switch result {
+                        case .success(let response):
+                            self.searchResult.append(contentsOf: response.results)
+                            self.pageCounter += 1
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                            AlertManager.dismissLoadingIndicator(in: self)
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
             }
-            
-            //Check if there are anymore characters to load
-            if searchResult.count < totalResultCount{
-                //Load more content
+            else if(tableViewContentType == TableViewContentType.discoverResult.rawValue){
+                guard let genreID = genreID else{
+                    return
+                }
+                
                 AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
                 
-                searchService.searchMovie(language: AppConfig.config.languageISO ,query: query , page: pageCounter) { result in
+                movieService.getDiscoverWithGenre(page: pageCounter, language: AppConfig.config.languageISO, sortBy: SortBy.popularity_desc.rawValue, minVoteCount: 10, withGenre: genreID) { result in
                     switch result {
                     case .success(let response):
-                        self.searchResult.append(contentsOf: response.results)
+                        self.tableViewContentType = TableViewContentType.discoverResult.rawValue
+                        self.searchResult = response.results
                         self.pageCounter += 1
+                        self.totalResultCount = response.totalResults
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -254,6 +320,9 @@ extension SearchViewController: UITableViewDelegate{
                         print(error)
                     }
                 }
+            }
+            else{
+                return
             }
         }
     }

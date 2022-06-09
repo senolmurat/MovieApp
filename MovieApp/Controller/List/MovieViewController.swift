@@ -133,7 +133,7 @@ class MovieViewController: UIViewController {
             }
         }
         
-        movieService.getDiscover(page: nowPlayingListPageCounter ,language: AppConfig.config.languageISO , sortBy: sortBy.vote_count_desc.rawValue , minVoteCount: 1000){ result in
+        movieService.getDiscover(page: nowPlayingListPageCounter ,language: AppConfig.config.languageISO , sortBy: SortBy.vote_count_desc.rawValue , minVoteCount: 1000){ result in
             switch result {
             case .success(let response):
                 self.discoverPageCounter += 1
@@ -432,7 +432,7 @@ extension MovieViewController : UICollectionViewDelegate{
                     //Load more content
                     //AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
                     
-                    movieService.getDiscover(page: nowPlayingListPageCounter ,language: AppConfig.config.languageISO , sortBy: sortBy.vote_count_desc.rawValue , minVoteCount: 1000){ result in
+                    movieService.getDiscover(page: nowPlayingListPageCounter ,language: AppConfig.config.languageISO , sortBy: SortBy.vote_count_desc.rawValue , minVoteCount: 1000){ result in
                         switch result {
                         case .success(let response):
                             self.discoverPageCounter += 1

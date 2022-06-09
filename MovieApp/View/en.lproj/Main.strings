@@ -5,9 +5,6 @@
 /* Class = "UITabBarItem"; title = "Movies"; ObjectID = "90W-XK-v10"; */
 "90W-XK-v10.title" = "Movies";
 
-/* Class = "UILabel"; text = ":"; ObjectID = "96o-dc-Dcm"; */
-"96o-dc-Dcm.text" = ":";
-
 /* Class = "UILabel"; text = "Popular Actors"; ObjectID = "9CR-c5-u0f"; */
 "9CR-c5-u0f.text" = "Popular Actors";
 
@@ -23,14 +20,8 @@
 /* Class = "UILabel"; text = "Revenue"; ObjectID = "DPF-aL-xIo"; */
 "DPF-aL-xIo.text" = "Revenue";
 
-/* Class = "UILabel"; text = ":"; ObjectID = "Epo-gX-fre"; */
-"Epo-gX-fre.text" = ":";
-
 /* Class = "UILabel"; text = "Biography:"; ObjectID = "Ewp-4M-ekX"; */
 "Ewp-4M-ekX.text" = "Biography:";
-
-/* Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit metus non eros ultricies imperdiet. Nullam sit amet lobortis ipsum, id rutrum urna. Sed et cursus felis, nec feugiat risus. Pellentesque venenatis blandit est. Morbi dui tortor, lobortis nec lacinia in, molestie at purus. Aliquam finibus sit amet urna eget rutrum. Etiam a euismod sem. Donec ac vulputate urna, in finibus enim. Nunc blandit turpis eget diam volutpat ornare."; ObjectID = "Jqb-cV-5zV"; */
-"Jqb-cV-5zV.text" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit metus non eros ultricies imperdiet. Nullam sit amet lobortis ipsum, id rutrum urna. Sed et cursus felis, nec feugiat risus. Pellentesque venenatis blandit est. Morbi dui tortor, lobortis nec lacinia in, molestie at purus. Aliquam finibus sit amet urna eget rutrum. Etiam a euismod sem. Donec ac vulputate urna, in finibus enim. Nunc blandit turpis eget diam volutpat ornare.";
 
 /* Class = "UILabel"; text = "Movie Genres"; ObjectID = "K2f-qx-mh8"; */
 "K2f-qx-mh8.text" = "Movie Genres";
@@ -74,9 +65,6 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "cJ0-05-0ub"; */
 "cJ0-05-0ub.text" = "Label";
 
-/* Class = "UILabel"; text = ":"; ObjectID = "icz-Ps-68t"; */
-"icz-Ps-68t.text" = ":";
-
 /* Class = "UILabel"; text = "Budget"; ObjectID = "k30-SZ-jCk"; */
 "k30-SZ-jCk.text" = "Budget";
 
@@ -86,20 +74,23 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "lMS-Xl-c9I"; */
 "lMS-Xl-c9I.text" = "Label";
 
-/* Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit metus non eros ultricies imperdiet. Nullam sit amet lobortis ipsum, id rutrum urna. Sed et cursus felis, nec feugiat risus. Pellentesque venenatis blandit est. Morbi dui tortor, lobortis nec lacinia in, molestie at purus. Aliquam finibus sit amet urna eget rutrum. Etiam a euismod sem. Donec ac vulputate urna, in finibus enim. Nunc blandit turpis eget diam volutpat ornare."; ObjectID = "o8M-Yg-8Ic"; */
-"o8M-Yg-8Ic.text" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc blandit metus non eros ultricies imperdiet. Nullam sit amet lobortis ipsum, id rutrum urna. Sed et cursus felis, nec feugiat risus. Pellentesque venenatis blandit est. Morbi dui tortor, lobortis nec lacinia in, molestie at purus. Aliquam finibus sit amet urna eget rutrum. Etiam a euismod sem. Donec ac vulputate urna, in finibus enim. Nunc blandit turpis eget diam volutpat ornare.";
-
 /* Class = "UILabel"; text = "Recommendations"; ObjectID = "qjU-tn-IU5"; */
 "qjU-tn-IU5.text" = "Recommendations";
-
-/* Class = "UILabel"; text = ":"; ObjectID = "v2E-h6-63z"; */
-"v2E-h6-63z.text" = ":";
 
 /* Class = "UILabel"; text = "Tagline"; ObjectID = "vxL-wK-W6i"; */
 "vxL-wK-W6i.text" = "Tagline";
 
-/* Class = "UILabel"; text = ":"; ObjectID = "yga-T5-GU4"; */
-"yga-T5-GU4.text" = ":";
-
 /* Class = "UILabel"; text = "Original Title"; ObjectID = "Wmb-iS-Pon"; */
 "Wmb-iS-Pon.text" = "Original Title";
+
+/* Class = "UILabel"; text = "Discover"; ObjectID = "KKB-oO-wip"; */
+"KKB-oO-wip.text" = "Discover";
+
+/* Class = "UILabel"; text = "Upcoming"; ObjectID = "ikc-dB-zsU"; */
+"ikc-dB-zsU.text" = "Upcoming";
+
+/* Class = "UILabel"; text = "Now Playing"; ObjectID = "Hsn-BY-xhn"; */
+"Hsn-BY-xhn.text" = "Now Playing";
+
+/* Class = "UILabel"; text = "Popular"; ObjectID = "Oo7-yd-P4S"; */
+"Oo7-yd-P4S.text" = "Popular";

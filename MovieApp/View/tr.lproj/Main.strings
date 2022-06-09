@@ -21,7 +21,7 @@
 "Ewp-4M-ekX.text" = "Biografi:";
 
 /* Class = "UILabel"; text = "Movie Genres"; ObjectID = "K2f-qx-mh8"; */
-"K2f-qx-mh8.text" = "Movie Genres";
+"K2f-qx-mh8.text" = "Film Türleri";
 
 /* Class = "UILabel"; text = "Release Date"; ObjectID = "Kuv-0a-ilq"; */
 "Kuv-0a-ilq.text" = "Yayınlanma Tarihi";
@@ -64,3 +64,15 @@
 
 /* Class = "UILabel"; text = "Original Title"; ObjectID = "Wmb-iS-Pon"; */
 "Wmb-iS-Pon.text" = "Orjinal İsim";
+
+/* Class = "UILabel"; text = "Discover"; ObjectID = "KKB-oO-wip"; */
+"KKB-oO-wip.text" = "Keşfet";
+
+/* Class = "UILabel"; text = "Upcoming"; ObjectID = "ikc-dB-zsU"; */
+"ikc-dB-zsU.text" = "Yakında";
+
+/* Class = "UILabel"; text = "Now Playing"; ObjectID = "Hsn-BY-xhn"; */
+"Hsn-BY-xhn.text" = "Vizyonda";
+
+/* Class = "UILabel"; text = "Popular"; ObjectID = "Oo7-yd-P4S"; */
+"Oo7-yd-P4S.text" = "Popüler";

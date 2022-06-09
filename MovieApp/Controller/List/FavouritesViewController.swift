@@ -38,8 +38,10 @@ class FavouritesViewController: UIViewController {
         totalMovieCount = favouriteMovieIDList.count
         
         title = "favourites_tab_title".localized()
-        if let searchTabBarItem = navigationController?.tabBarItem{
-            searchTabBarItem.title = "favourites_tab_title".localized()
+        if let favouritesTabBarItem = navigationController?.tabBarItem{
+            favouritesTabBarItem.title = "favourites_tab_title".localized()
+            favouritesTabBarItem.image = UIImage(systemName: "star.fill")
+            favouritesTabBarItem.selectedImage = UIImage(systemName: "star.fill")
         }
 
         tableView.register(UINib(nibName: K.MovieListLessDetailNibName, bundle: nil), forCellReuseIdentifier: K.MovieListLessDetailCellIdentifier)

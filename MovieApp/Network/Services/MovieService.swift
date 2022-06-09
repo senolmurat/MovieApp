@@ -16,6 +16,7 @@ protocol MovieServiceProtocol {
     func getCredits(movieID : Int , language : String ,completion: @escaping (Result<Credits, NetworkError>) -> Void)
     func getImages(movieID : Int ,completion: @escaping (Result<MovieImageList, NetworkError>) -> Void)
     func getDiscover(page : Int, language : String, sortBy : String, minVoteCount : Int ,completion: @escaping (Result<MovieList, NetworkError>) -> Void)
+    func getDiscoverWithGenre(page : Int, language : String, sortBy : String, minVoteCount : Int , withGenre : Int ,completion: @escaping (Result<MovieList, NetworkError>) -> Void)
 }
 
 struct MovieService: MovieServiceProtocol {
@@ -59,13 +60,18 @@ struct MovieService: MovieServiceProtocol {
         network.performRequest(request: urlRequest, completion: completion)
     }
     
-    func getDiscover(page : Int, language : String, sortBy : String = sortBy.popularity_desc.rawValue, minVoteCount : Int = 1000 ,completion: @escaping (Result<MovieList, NetworkError>) -> Void){
+    func getDiscover(page : Int, language : String, sortBy : String = SortBy.popularity_desc.rawValue, minVoteCount : Int = 1000 ,completion: @escaping (Result<MovieList, NetworkError>) -> Void){
         let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/discover/movie" + "?api_key=\(AppConfig.config.apikey)"  + "&page=\(page)" + "&language=\(language)"  + "&sort_by=\(sortBy)" + "&vote_count.gte=\(minVoteCount)")!)
+        network.performRequest(request: urlRequest, completion: completion)
+    }
+    
+    func getDiscoverWithGenre(page : Int, language : String, sortBy : String = SortBy.popularity_desc.rawValue, minVoteCount : Int = 0, withGenre : Int ,completion: @escaping (Result<MovieList, NetworkError>) -> Void){
+        let urlRequest = URLRequest(url: URL(string: AppConfig.config.baseURL + "/discover/movie" + "?api_key=\(AppConfig.config.apikey)"  + "&page=\(page)" + "&language=\(language)"  + "&sort_by=\(sortBy)" + "&vote_count.gte=\(minVoteCount)" + "&with_genres=\(withGenre)")!)
         network.performRequest(request: urlRequest, completion: completion)
     }
 }
 
-enum sortBy : String {
+enum SortBy : String {
     case popularity_asc = "popularity.asc"
     case popularity_desc = "popularity.desc"
     case release_date_asc = "release_date.asc"
@@ -82,7 +88,7 @@ enum sortBy : String {
     case vote_count_desc = "vote_count.desc"
 }
 
-enum monetizationType : String {
+enum MonetizationType : String {
     case flatrate = "flatrate"
     case free = "free"
     case ads = "ads"
