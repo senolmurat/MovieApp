@@ -51,7 +51,11 @@ class CastDetailViewController: UIViewController {
         
         ImageManager.setImage(withPath: person.profilePath, on: profileImageView, placeholder: UIImage(systemName: K.peoplePlaceholder)!)
         
-        let finalColor = UIColor.systemBackground
+        
+        guard let finalColor = view.backgroundColor else{
+            return
+        }
+        
         let initialColor = finalColor.withAlphaComponent(0.0)
         
         let gradientLayer = CAGradientLayer()

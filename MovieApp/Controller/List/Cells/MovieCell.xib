@@ -27,7 +27,7 @@
                     </imageView>
                     <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kc4-NU-jZu" userLabel="backshadow">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                        <color key="backgroundColor" name="backShadowColor"/>
+                        <color key="backgroundColor" name="BackShadowColor"/>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wNN-Ra-Fov" userLabel="posterImageView">
                         <rect key="frame" x="16" y="18" width="96" height="144"/>
@@ -137,8 +137,8 @@
     <resources>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <namedColor name="backShadowColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="BackShadowColor">
+            <color red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

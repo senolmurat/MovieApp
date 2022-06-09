@@ -42,7 +42,7 @@ class SearchViewController: UIViewController {
 
         searchBar.delegate = self
         searchBar.sizeToFit()
-        searchBar.backgroundColor = UIColor.systemBackground
+        searchBar.backgroundColor = UIColor(named: "AppBackgroundColor")
         navigationItem.titleView = searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
         
@@ -199,17 +199,21 @@ extension SearchViewController : UISearchBarDelegate{
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        if let text = searchBar.text{
-            if text.count < 3{
-                return false
-            }
-        }
+//        if let text = searchBar.text{
+//            if text.count < 3{
+//                return false
+//            }
+//        }
         return true
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         guard let query = searchBar.text else{
+            return
+        }
+        
+        if query.count == 0{
             return
         }
         

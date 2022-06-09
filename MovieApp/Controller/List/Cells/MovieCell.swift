@@ -21,7 +21,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var bookmarkImageView: UIImageView!
     private var isFavourited : Bool = false
     private var movieID : Int?
-    var inset : CGFloat = 10
+    var inset : CGFloat = 2
     
     
     override func awakeFromNib() {

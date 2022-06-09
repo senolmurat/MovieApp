@@ -4,8 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +20,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QnY-h2-zoh">
                         <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
-                        <color key="backgroundColor" name="cellBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVz-fy-lJb">
                         <rect key="frame" x="8" y="4" width="114" height="32"/>
@@ -50,8 +50,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="cellBackgroundColor">
-            <color red="0.49803921568627452" green="0.51764705882352935" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -155,7 +155,9 @@ class MovieDetailViewController: UIViewController {
     func configureMovieDetail(with movie : Movie){
         ImageManager.setImage(withPath: movie.posterPath, on: movieImageView , placeholder: UIImage(systemName: K.posterPlaceholder)!)
         
-        let finalColor = UIColor.systemBackground
+        guard let finalColor = view.backgroundColor else{
+            return
+        }
         let initialColor = finalColor.withAlphaComponent(0.0)
         
         let gradientLayer = CAGradientLayer()

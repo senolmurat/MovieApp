@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F0B4C072847BF2100870808 /* DynamicColor in Frameworks */ = {isa = PBXBuildFile; productRef = 6F0B4C062847BF2100870808 /* DynamicColor */; };
 		6F1D0D1B284503F100E24E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D1A284503F100E24E53 /* AppDelegate.swift */; };
 		6F1D0D1D284503F100E24E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1D0D1C284503F100E24E53 /* SceneDelegate.swift */; };
 		6F1D0D22284503F100E24E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1D0D20284503F100E24E53 /* Main.storyboard */; };
@@ -120,7 +119,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FCBFD4F2850AE5000EF313A /* Localize_Swift in Frameworks */,
-				6F0B4C072847BF2100870808 /* DynamicColor in Frameworks */,
 				6F88DA7328461E4000A63818 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +324,6 @@
 			name = MovieApp;
 			packageProductDependencies = (
 				6F88DA7228461E4000A63818 /* Kingfisher */,
-				6F0B4C062847BF2100870808 /* DynamicColor */,
 				6FCBFD4E2850AE5000EF313A /* Localize_Swift */,
 			);
 			productName = MovieApp;
@@ -367,7 +364,6 @@
 			mainGroup = 6F1D0D0E284503F100E24E53;
 			packageReferences = (
 				6F88DA7128461E4000A63818 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				6F0B4C052847BF2100870808 /* XCRemoteSwiftPackageReference "DynamicColor" */,
 				6FCBFD4D2850AE5000EF313A /* XCRemoteSwiftPackageReference "Localize-Swift" */,
 			);
 			productRefGroup = 6F1D0D18284503F100E24E53 /* Products */;
@@ -682,14 +678,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6F0B4C052847BF2100870808 /* XCRemoteSwiftPackageReference "DynamicColor" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/yannickl/DynamicColor.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		6F88DA7128461E4000A63818 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -709,11 +697,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6F0B4C062847BF2100870808 /* DynamicColor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6F0B4C052847BF2100870808 /* XCRemoteSwiftPackageReference "DynamicColor" */;
-			productName = DynamicColor;
-		};
 		6F88DA7228461E4000A63818 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6F88DA7128461E4000A63818 /* XCRemoteSwiftPackageReference "Kingfisher" */;

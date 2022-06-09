@@ -41,7 +41,7 @@ class MovieLessDetailCell: UITableViewCell {
         movieID = movie.id
         
         //ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
-        ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 2)
+        ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 2,placeholder: UIImage(systemName: K.posterPlaceholder)!)
         
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
         bookmarkImageView.image = self.isFavourited ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
@@ -60,7 +60,7 @@ class MovieLessDetailCell: UITableViewCell {
         movieID = movie.id
         
         //ImageManager.setImage(withPath: movie.posterPath, on: posterImageView)
-        ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 2)
+        ImageManager.setImageRounded(withPath: movie.posterPath, on: posterImageView, cornerRadius: 2,placeholder: UIImage(systemName: K.posterPlaceholder)!)
         
         isFavourited = AppConfig.config.favouriteList.contains(movie.id)
         bookmarkImageView.image = self.isFavourited ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")

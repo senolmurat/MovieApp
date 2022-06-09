@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xId-7z-dRe">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,11 +21,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yVg-Yo-tha">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yVg-Yo-tha" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VS2-4X-RGe"/>
                             <constraint firstItem="yVg-Yo-tha" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bto-uu-GsX"/>
@@ -114,7 +115,7 @@
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sa7-lA-cEN">
                                                 <rect key="frame" x="8" y="629" width="398" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="BON-Lt-wxX"/>
                                                 </constraints>
@@ -128,7 +129,7 @@
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lCx-Ys-vKz" userLabel="Cast Collection View">
                                                 <rect key="frame" x="8" y="958" width="398" height="70"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="6iD-g9-efq"/>
                                                 </constraints>
@@ -142,7 +143,7 @@
                                             </collectionView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lER-FZ-t0i" userLabel="Recommendations Collection View">
                                                 <rect key="frame" x="8" y="1247" width="398" height="160"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="160" id="UBa-51-Rmi"/>
                                                 </constraints>
@@ -331,7 +332,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Jqb-cV-5zV" firstAttribute="top" secondItem="vxL-wK-W6i" secondAttribute="bottom" constant="8" id="0jE-Mv-ngL"/>
                                             <constraint firstItem="sa7-lA-cEN" firstAttribute="leading" secondItem="Msb-Fd-IEx" secondAttribute="leading" constant="8" id="2El-IG-ZLj"/>
@@ -393,7 +394,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qUb-dH-JBM"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="suc-03-m2d" firstAttribute="trailing" secondItem="qUb-dH-JBM" secondAttribute="trailing" id="6hI-M7-3Kg"/>
                             <constraint firstItem="suc-03-m2d" firstAttribute="top" secondItem="0sZ-3T-Oh1" secondAttribute="top" id="JST-4h-L5J"/>
@@ -441,7 +442,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O3h-CJ-QAc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="9QE-bn-IAG" kind="relationship" relationship="viewControllers" id="LXw-Iy-Uik"/>
@@ -463,6 +463,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" placeholder="Search Something..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xql-bf-4TL">
                                 <rect key="frame" x="0.0" y="88" width="414" height="51"/>
+                                <color key="barTintColor" name="AppBackgroundColor"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
@@ -477,7 +478,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IbE-OJ-LvQ">
                                 <rect key="frame" x="8" y="120" width="398" height="134"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="134" id="bCv-7T-Z7L"/>
                                 </constraints>
@@ -497,7 +498,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hjN-Bk-haZ">
                                 <rect key="frame" x="8" y="302" width="398" height="120"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="yEG-76-8lz"/>
                                 </constraints>
@@ -512,7 +513,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="F5P-w5-ToI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="F5P-w5-ToI" firstAttribute="trailing" secondItem="K2f-qx-mh8" secondAttribute="trailing" constant="8" id="0uS-Iq-hxX"/>
                             <constraint firstItem="hjN-Bk-haZ" firstAttribute="top" secondItem="K2f-qx-mh8" secondAttribute="bottom" constant="8" id="8pI-35-p4a"/>
@@ -555,11 +556,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="RZr-du-G6g">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QGN-q3-eNy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RZr-du-G6g" firstAttribute="leading" secondItem="QGN-q3-eNy" secondAttribute="leading" id="25O-ou-9E2"/>
                             <constraint firstItem="RZr-du-G6g" firstAttribute="bottom" secondItem="QGN-q3-eNy" secondAttribute="bottom" id="AK2-W4-CvV"/>
@@ -687,7 +688,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="MAl-TR-fLS" secondAttribute="trailing" constant="8" id="53i-Us-wK1"/>
                                             <constraint firstItem="o8M-Yg-8Ic" firstAttribute="top" secondItem="Ewp-4M-ekX" secondAttribute="bottom" constant="8" id="54G-7n-D1J"/>
@@ -725,7 +726,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="le0-we-Rz9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QXU-G5-8VA" firstAttribute="trailing" secondItem="le0-we-Rz9" secondAttribute="trailing" id="4kQ-wB-r5a"/>
                             <constraint firstItem="QXU-G5-8VA" firstAttribute="top" secondItem="GCy-EL-1FD" secondAttribute="top" id="Mh6-GM-8PW"/>
@@ -752,9 +753,9 @@
         <image name="film" catalog="system" width="128" height="93"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="AppBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
