@@ -100,3 +100,6 @@
 
 /* Class = "UILabel"; text = ":"; ObjectID = "yga-T5-GU4"; */
 "yga-T5-GU4.text" = ":";
+
+/* Class = "UILabel"; text = "Original Title"; ObjectID = "Wmb-iS-Pon"; */
+"Wmb-iS-Pon.text" = "Original Title";

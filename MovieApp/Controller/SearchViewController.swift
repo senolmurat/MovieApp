@@ -39,9 +39,7 @@ class SearchViewController: UIViewController {
         
         movieGenresCollectionView.delegate = self
         movieGenresCollectionView.dataSource = self
-        
-        //var leftNavBarButton = UIBarButtonItem(customView:searchBar)
-        //self.navigationItem.leftBarButtonItem = leftNavBarButton
+
         searchBar.delegate = self
         searchBar.sizeToFit()
         searchBar.backgroundColor = UIColor.systemBackground
@@ -64,8 +62,6 @@ class SearchViewController: UIViewController {
         tableView.isHidden = true
         self.view.addSubview(tableView)
         
-        
-        //TODO: Localization
         GenreService().getMovieGenreList(language: AppConfig.config.languageISO, completion: { [self] result in
             switch result {
             case .success(let response):
@@ -79,7 +75,6 @@ class SearchViewController: UIViewController {
             }
         })
         
-        //TODO: Localization
         PersonService().getPopular(page: 1, language: AppConfig.config.languageISO) { result in
             switch result {
             case .success(let response):
@@ -88,7 +83,6 @@ class SearchViewController: UIViewController {
                     popularActorsCollectionView.reloadData()
                 }
             case .failure(let error):
-                //TODO: Network Error , Could not retrive genre lsit for movies
                 print(error)
             }
         }
@@ -98,6 +92,7 @@ class SearchViewController: UIViewController {
         self.tableView.register(UINib(nibName: K.MovieListLessDetailNibName, bundle: nil), forCellReuseIdentifier: K.MovieListLessDetailCellIdentifier)
     }
     
+    //MARK: - Search Function
     func search(with query : String){
         AlertManager.showLoadingIndicator(in: self)
         tableView.isHidden = false
@@ -112,7 +107,6 @@ class SearchViewController: UIViewController {
                 }
                 AlertManager.dismissLoadingIndicator(in: self)
             case .failure(let error):
-                //TODO: Network Error , Could not retrive genre lsit for movies
                 print(error)
             }
         }
@@ -178,6 +172,7 @@ extension SearchViewController: UICollectionViewDelegate{
     }
 }
 
+//MARK: - UISearchBarDelegate Functions
 extension SearchViewController : UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
@@ -191,15 +186,15 @@ extension SearchViewController : UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if(searchText == ""){
-            searchBar.endEditing(true)
-            tableView.isHidden = true
-        }
-        else if (searchText.count >= 3){
-            tableView.isHidden = false
-            AlertManager.dismissLoadingIndicator(in: self)
-            search(with: searchText)
-        }
+//        if(searchText == ""){
+//            searchBar.endEditing(true)
+//            tableView.isHidden = true
+//        }
+//        else if (searchText.count >= 3){
+//            tableView.isHidden = false
+//            AlertManager.dismissLoadingIndicator(in: self)
+//            search(with: searchText)
+//        }
         
     }
     
@@ -240,7 +235,6 @@ extension SearchViewController: UITableViewDelegate{
             //Check if there are anymore characters to load
             if searchResult.count < totalResultCount{
                 //Load more content
-                //AlertManager.showLoadingIndicator(in: self)
                 AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
                 
                 searchService.searchMovie(language: AppConfig.config.languageISO ,query: query , page: pageCounter) { result in
@@ -253,7 +247,6 @@ extension SearchViewController: UITableViewDelegate{
                         }
                         AlertManager.dismissLoadingIndicator(in: self)
                     case .failure(let error):
-                        //TODO: Network Error , Could not retrive genre lsit for movies
                         print(error)
                     }
                 }

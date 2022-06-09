@@ -7,6 +7,7 @@
 
 import UIKit
 import Localize_Swift
+import Network
 
 class MovieViewController: UIViewController {
     
@@ -28,7 +29,7 @@ class MovieViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = (view.bounds.width / 16) * 9
+        tableView.rowHeight = (view.bounds.width / 16) * 9 + (MovieCell().inset * 2)
         
         title = K.appNameWithEmoji
         if let moviesTabBarItem = navigationController?.tabBarItem{
@@ -37,6 +38,20 @@ class MovieViewController: UIViewController {
             moviesTabBarItem.selectedImage = UIImage(systemName: "film")
         }
         
+        //TODO: Internet Connection Check
+//        let monitor = NWPathMonitor()
+//        monitor.pathUpdateHandler = { path in
+//            if path.status == .satisfied {
+//                print("Connected to Internet!")
+//            } else {
+//                print("No Internet connection.")
+//                AlertManager.showInfoAlertBox(with: "Device is not connected to the internet. App will still run but it may not function correctly.", errorTitle: "Network Error" ,in: self, handler: nil)
+//            }
+//
+//            print("Expensive Connection : \(path.isExpensive)")
+//        }
+//        let queue = DispatchQueue(label: "Connection Monitor")
+//        monitor.start(queue: queue)
         
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         

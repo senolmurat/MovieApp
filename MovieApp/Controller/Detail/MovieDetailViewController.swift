@@ -30,15 +30,11 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var bookmarkImageView: UIImageView!
     @IBOutlet weak var taglineLabel: UILabel!
     
-    @IBOutlet weak var budgetTitleLabel: UILabel!
+    @IBOutlet weak var originalTitleLabel: UILabel!
     @IBOutlet weak var budgetInfoLabel: UILabel!
-    @IBOutlet weak var revenueTitleLabel: UILabel!
     @IBOutlet weak var revenueInfoLabel: UILabel!
-    @IBOutlet weak var runtimeTitleLabel: UILabel!
     @IBOutlet weak var runtimeInfoLabel: UILabel!
-    @IBOutlet weak var homepageTitleLabel: UILabel!
     @IBOutlet weak var homepageInfoLabel: UILabel!
-    @IBOutlet weak var companiesTitleLabel: UILabel!
     @IBOutlet weak var companiesInfoLabel: UILabel!
     
     @IBOutlet weak var castTitleLabel: UILabel!
@@ -202,6 +198,8 @@ class MovieDetailViewController: UIViewController {
         else{
             taglineLabel.isHidden = true
         }
+        
+        originalTitleLabel.text = movie.originalTitle
         
         let currencyformatter = NumberFormatter()
         currencyformatter.locale = Locale(identifier: "en_US") // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already

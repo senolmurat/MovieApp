@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     AppConfig.config.genres[genre.id] = genre.name
                 }
             case .failure(let error):
-                //TODO: shutdown app
+                //TODO: shutdown app ?
                 print(error)
             }
         })

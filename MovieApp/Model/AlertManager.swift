@@ -21,13 +21,15 @@ struct AlertManager{
 //
 //        alert.view.addSubview(loadingIndicator)
 //        controller.present(alert, animated: true, completion: nil)
-        let child = SpinnerViewController()
+        DispatchQueue.main.async {
+            let child = SpinnerViewController()
 
-        // add the spinner view controller
-        controller.addChild(child)
-        child.view.frame = controller.view.frame
-        controller.view.addSubview(child.view)
-        child.didMove(toParent: controller)
+            // add the spinner view controller
+            controller.addChild(child)
+            child.view.frame = controller.view.frame
+            controller.view.addSubview(child.view)
+            child.didMove(toParent: controller)
+        }
     }
     
     static func dismissLoadingIndicator(in controller : UIViewController){        
@@ -42,33 +44,42 @@ struct AlertManager{
     }
     
     static func dismiss(in controller : UIViewController , animated : Bool){
-        controller.dismiss(animated: animated, completion: nil)
+        DispatchQueue.main.async {
+            controller.dismiss(animated: animated, completion: nil)
+        }
     }
         
     static func showInfoAlertBox(for error: NSError , in controller: UIViewController , handler: ((UIAlertAction) -> Void)? ){
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: handler))
-        controller.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: handler))
+            controller.present(alert, animated: true, completion: nil)
+        }
     }
     
-    static func showInfoAlertBox(with message: String , in controller: UIViewController , handler: ((UIAlertAction) -> Void)? ){
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: handler))
-        controller.present(alert, animated: true, completion: nil)
+    static func showInfoAlertBox(with message: String , errorTitle : String = "Error" , in controller: UIViewController , handler: ((UIAlertAction) -> Void)? ){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: errorTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: handler))
+            controller.present(alert, animated: true, completion: nil)
+        }
     }
     
     static func showTableViewLoadingIndicator(for tableView : UITableView , in controller : UIViewController){
-        //NOTE : No need to create spinner everytime it needs to be shown ? 
-        let spinner = UIActivityIndicatorView(style: .medium)
-        spinner.startAnimating()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        DispatchQueue.main.async {
+            let spinner = UIActivityIndicatorView(style: .medium)
+            spinner.startAnimating()
+            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
 
-        tableView.tableFooterView = spinner
-        tableView.tableFooterView?.isHidden = false
+            tableView.tableFooterView = spinner
+            tableView.tableFooterView?.isHidden = false
+        }
     }
     
     static func hideTableViewLoadingIndicator(for tableView : UITableView , in controller : UIViewController){
-        tableView.tableFooterView?.isHidden = true
+        DispatchQueue.main.async {
+            tableView.tableFooterView?.isHidden = true
+        }
     }
 }
 

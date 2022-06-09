@@ -21,6 +21,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var bookmarkImageView: UIImageView!
     private var isFavourited : Bool = false
     private var movieID : Int?
+    var inset : CGFloat = 10
     
     
     override func awakeFromNib() {
@@ -35,6 +36,11 @@ class MovieCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0))
     }
     
     func configureMovie(with movie : Movie){
@@ -102,6 +108,7 @@ class MovieCell: UITableViewCell {
                 self.bookmarkImageView.transform = CGAffineTransform.identity
             })
         })
+        
     }
     
 }

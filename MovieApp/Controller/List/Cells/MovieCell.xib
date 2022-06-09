@@ -45,7 +45,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MovieName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7W-T1-Y9Z">
-                                <rect key="frame" x="0.0" y="0.0" width="192" height="21.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="166" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -87,7 +87,6 @@
                             <constraint firstItem="jgk-Wm-af8" firstAttribute="top" secondItem="AIf-t0-KdN" secondAttribute="bottom" constant="3" id="n9C-2f-gU9"/>
                             <constraint firstItem="044-BB-kcj" firstAttribute="leading" secondItem="aRQ-Ly-6XK" secondAttribute="leading" id="o7T-l1-aDp"/>
                             <constraint firstItem="f7W-T1-Y9Z" firstAttribute="leading" secondItem="aRQ-Ly-6XK" secondAttribute="leading" id="rxF-uk-cmj"/>
-                            <constraint firstAttribute="trailing" secondItem="f7W-T1-Y9Z" secondAttribute="trailing" id="sRw-ln-4Ht"/>
                             <constraint firstItem="AIf-t0-KdN" firstAttribute="leading" secondItem="aRQ-Ly-6XK" secondAttribute="leading" id="xVP-9U-Xg2"/>
                             <constraint firstAttribute="bottom" secondItem="ktl-St-Ea1" secondAttribute="bottom" id="zhV-1V-V8l"/>
                         </constraints>
@@ -117,6 +116,7 @@
                     <constraint firstAttribute="trailing" secondItem="aRQ-Ly-6XK" secondAttribute="trailing" constant="8" id="lyx-ez-oLb"/>
                     <constraint firstItem="aRQ-Ly-6XK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="tXu-fz-o4E"/>
                     <constraint firstItem="dvs-Go-U5e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="u22-0U-f3x"/>
+                    <constraint firstItem="f7W-T1-Y9Z" firstAttribute="trailing" secondItem="wI2-RJ-qGl" secondAttribute="leading" id="yyE-Tk-Dei"/>
                     <constraint firstAttribute="bottom" secondItem="dvs-Go-U5e" secondAttribute="bottom" id="zgk-Xm-Fj9"/>
                 </constraints>
             </tableViewCellContentView>

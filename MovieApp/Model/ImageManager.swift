@@ -22,7 +22,6 @@ class ImageManager{
             imageView.kf.indicatorType = .activity
             imageView.kf.setImage(
                 with: url,
-                //TODO: change image name to some variable from AppConstants
                 //placeholder: UIImage(named: "placeholderImage"),
                 options: [
                     .processor(processor),
@@ -56,7 +55,6 @@ class ImageManager{
             imageView.kf.indicatorType = .activity
             imageView.kf.setImage(
                 with: url,
-                //TODO: change image name to some variable from AppConstants
                 //placeholder: placeholder,
                 options: [
                     .processor(processor),
@@ -91,7 +89,6 @@ class ImageManager{
             imageView.kf.indicatorType = .activity
             imageView.kf.setImage(
                 with: url,
-                //TODO: change image name to some variable from AppConstants
                 //placeholder: UIImage(named: "placeholderImage"),
                 options: [
                     .processor(processor),
@@ -125,7 +122,6 @@ class ImageManager{
             imageView.kf.indicatorType = .activity
             imageView.kf.setImage(
                 with: url,
-                //TODO: change image name to some variable from AppConstants
                 //placeholder: placeholder,
                 options: [
                     .processor(processor),
@@ -149,4 +145,5 @@ class ImageManager{
             print("Job failed: Image Path does not exist.")
         }
     }
+
 }

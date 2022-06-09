@@ -62,3 +62,5 @@
 /* Class = "UILabel"; text = "Tagline"; ObjectID = "vxL-wK-W6i"; */
 "vxL-wK-W6i.text" = "Önsöz";
 
+/* Class = "UILabel"; text = "Original Title"; ObjectID = "Wmb-iS-Pon"; */
+"Wmb-iS-Pon.text" = "Orjinal İsim";
