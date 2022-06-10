@@ -384,6 +384,17 @@ extension MovieDetailViewController : UICollectionViewDelegate{
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if(collectionView == castCollectionView){
+            let castCell = cell as? CastCell
+            castCell?.castImageView.kf.cancelDownloadTask()
+        }
+        else if(collectionView == recommendationsCollectionView){
+            let movieCell = cell as? RecommendedMovieCell
+            movieCell?.posterImageView.kf.cancelDownloadTask()
+        }
+    }
 }
 
 //MARK: - CollectionView FlowLayout Functions

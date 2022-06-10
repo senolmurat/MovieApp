@@ -37,6 +37,7 @@ class MovieViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -86,6 +87,7 @@ class MovieViewController: UIViewController {
         tableView.register(UINib(nibName: K.MovieListCellNibName, bundle: nil), forCellReuseIdentifier: K.MovieListCellIdentifier)
         
         AlertManager.showLoadingIndicator(in: self)
+        //NOTE: DispatchGroup - To determine to last ending async function
         
         movieService.getPopular(page: popularListPageCounter ,language: AppConfig.config.languageISO){ result in
             switch result {
@@ -161,13 +163,19 @@ class MovieViewController: UIViewController {
     
     //MARK: - List View Changing Table/Collection
     @IBAction func listBarButtonClicked(_ sender: UIBarButtonItem) {
-        tableView.isHidden = false
-        scrollView.isHidden = true
+        if(tableView.isHidden){
+            tableView.isHidden = false
+            tableView.reloadData()
+            scrollView.isHidden = true
+        }
     }
     
     @IBAction func tableBarButtonClicked(_ sender: UIBarButtonItem) {
-        tableView.isHidden = true
-        scrollView.isHidden = false
+        if(scrollView.isHidden){
+            scrollView.isHidden = false
+            popularCollectionView.reloadData()
+            tableView.isHidden = true
+        }
     }
 }
 
@@ -230,6 +238,12 @@ extension MovieViewController: UITableViewDelegate{
             }
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let movieCell = cell as? MovieCell
+        movieCell?.posterImageView.kf.cancelDownloadTask()
+        movieCell?.backdropImageView.kf.cancelDownloadTask()
     }
 }
 
@@ -448,6 +462,11 @@ extension MovieViewController : UICollectionViewDelegate{
                 }
             }
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let movieCell = cell as? RecommendedMovieCell
+        movieCell?.posterImageView.kf.cancelDownloadTask()
     }
 }
 

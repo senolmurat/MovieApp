@@ -81,6 +81,7 @@ struct AlertManager{
             tableView.tableFooterView?.isHidden = true
         }
     }
+    
 }
 
 class SpinnerViewController: UIViewController {

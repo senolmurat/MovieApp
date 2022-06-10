@@ -23,6 +23,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var popularActorsCollectionView: UICollectionView!
     @IBOutlet weak var movieGenresCollectionView: UICollectionView!
     
+    private var searchTask: DispatchWorkItem?
+    
     private var tableViewContentType : Int = TableViewContentType.none.rawValue
     
     var tableView : UITableView!
@@ -211,6 +213,13 @@ extension SearchViewController: UICollectionViewDelegate{
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if(collectionView == popularActorsCollectionView){
+            let castCell = cell as? CastCell
+            castCell?.castImageView.kf.cancelDownloadTask()
+        }
+    }
 }
 
 //MARK: - UISearchBarDelegate Functions
@@ -227,34 +236,35 @@ extension SearchViewController : UISearchBarDelegate{
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if(searchText == ""){
-//            searchBar.endEditing(true)
-//            tableView.isHidden = true
-//        }
-//        else if (searchText.count >= 3){
-//            tableView.isHidden = false
-//            AlertManager.dismissLoadingIndicator(in: self)
-//            search(with: searchText)
-//        }
-        
+        if(searchText == ""){
+            searchBar.endEditing(true)
+            tableView.isHidden = true
+        }
+        else if (searchText.count >= 3){
+            self.searchTask?.cancel()
+            let task = DispatchWorkItem { [self] in
+                tableView.isHidden = false
+                AlertManager.dismissLoadingIndicator(in: self)
+                search(with: searchText)
+            }
+            self.searchTask = task
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: task)
+         
+        }
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-//        if let text = searchBar.text{
-//            if text.count < 3{
-//                return false
-//            }
-//        }
+        if let text = searchBar.text{
+            if text.count < 3{
+                return false
+            }
+        }
         return true
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
         guard let query = searchBar.text else{
-            return
-        }
-        
-        if query.count == 0{
             return
         }
         
@@ -337,6 +347,11 @@ extension SearchViewController: UITableViewDelegate{
             }
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let movieCell = cell as? MovieLessDetailCell
+        movieCell?.posterImageView.kf.cancelDownloadTask()
     }
 }
 

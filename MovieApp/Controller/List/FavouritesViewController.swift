@@ -140,4 +140,9 @@ extension FavouritesViewController: UITableViewDelegate{
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let movieCell = cell as? MovieLessDetailCell
+        movieCell?.posterImageView.kf.cancelDownloadTask()
+    }
 }
