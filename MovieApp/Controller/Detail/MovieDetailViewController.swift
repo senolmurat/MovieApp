@@ -93,7 +93,6 @@ class MovieDetailViewController: UIViewController {
                     self.movieService.getRecommendations(id: response.id , language: AppConfig.config.languageISO) { result in
                         switch result {
                         case .success(let response):
-                            //TODO: Maybe pagination ? Limit For now...
                             if response.results.count != 0 {
                                 self.recommendationList.append(contentsOf: response.results.prefix(AppConfig.config.MaxRecommendedMovieCount))
                                 DispatchQueue.main.async {
@@ -112,8 +111,7 @@ class MovieDetailViewController: UIViewController {
                     //GET Credits
                     self.movieService.getCredits(movieID: response.id , language: AppConfig.config.languageISO) { result in
                         switch result {
-                        case .success(let response):
-                            //TODO: Maybe pagination ? Limit For now...
+                        case .success(let response):                            
                             self.castList.append(contentsOf: response.cast.prefix(AppConfig.config.MaxShowedCastCount))
                             DispatchQueue.main.async {
                                 self.castCollectionView.reloadData()
