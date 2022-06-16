@@ -4,6 +4,7 @@
 //   let movie = try? newJSONDecoder().decode(Movie.self, from: jsonData)
 
 import Foundation
+import UIKit
 
 // MARK: - Movie
 struct Movie: Codable {
@@ -75,6 +76,31 @@ struct Movie: Codable {
         case video = "video"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+    }
+    
+    static func configureFavouriteList(with movieID: Int , imageView : UIImageView , isAlreadyFavourited : inout Bool){
+        if(isAlreadyFavourited){
+            isAlreadyFavourited = false
+            AppConfig.config.favouriteList.removeAll(where: {$0 == movieID})
+            //bookmarkImageView.image = UIImage(systemName: "bookmark")
+        }
+        else{
+            isAlreadyFavourited = true
+            AppConfig.config.favouriteList.append(movieID)
+            //bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
+        }
+        
+        let isFavourited = isAlreadyFavourited
+        UIView.animate(withDuration: 0.1, animations: { 
+            let newImage = isFavourited ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
+            imageView.transform = imageView.transform.scaledBy(x: 1.3, y: 1.3)
+            imageView.image = newImage
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1, animations: {
+                imageView.transform = CGAffineTransform.identity
+            })
+        })
+        
     }
 }
 

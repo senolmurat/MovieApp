@@ -243,27 +243,7 @@ class MovieDetailViewController: UIViewController {
     
     //MARK: - Gesture Recognizer Functions
     @objc func bookmarkClicked(_ sender:UITapGestureRecognizer){
-        if(isFavourited){
-            isFavourited = false
-            AppConfig.config.favouriteList.removeAll(where: {$0 == movieID})
-            //bookmarkImageView.image = UIImage(systemName: "bookmark")
-        }
-        else{
-            isFavourited = true
-            AppConfig.config.favouriteList.append(movieID!)
-            //bookmarkImageView.image = UIImage(systemName: "bookmark.fill")
-        }
-        
-        UIView.animate(withDuration: 0.1, animations: { [self] in
-            let newImage = self.isFavourited ? UIImage(systemName: "bookmark.fill") : UIImage(systemName: "bookmark")
-            bookmarkImageView.transform = bookmarkImageView.transform.scaledBy(x: 1.3, y: 1.3)
-            bookmarkImageView.image = newImage
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.1, animations: {
-                self.bookmarkImageView.transform = CGAffineTransform.identity
-            })
-        })
-        
+        Movie.configureFavouriteList(with: movieID!, imageView: bookmarkImageView, isAlreadyFavourited: &isFavourited)
     }
     
     
