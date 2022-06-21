@@ -109,7 +109,7 @@ struct Collection: Codable {
     let id: Int
     let name: String
     let posterPath: String
-    let backdropPath: String
+    let backdropPath: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"

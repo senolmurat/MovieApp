@@ -20,12 +20,24 @@ class FavouritesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        totalMovieCount = favouriteMovieIDList.count
         
-        loadData()
+        for movieID in favouriteMovieIDList{
+            print(movieID)
+        }
+        print("Total : \(favouriteMovieIDList.count)")
+        
+        if(AppConfig.config.reloadFavouriteList){
+            loadData()
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
+    
+    //TODO: Sort by Bar Button item maybe ?
+    //TODO: Search in favourites list ?
+    //TODO: save scrool position before reloading tableView data
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,28 +62,48 @@ class FavouritesViewController: UIViewController {
     
     func loadData(){
         //Maybe hold the entire movie object instead of just the id ?
+        let movieGroup = DispatchGroup()
         
         favouriteMovieIDList = AppConfig.config.favouriteList
         favouriteMovieList.removeAll()
         for movieID in favouriteMovieIDList{
-            
+            movieGroup.enter()
             movieService.getMovieDetail(id: movieID , language: AppConfig.config.languageISO) { [self] result in
                 switch result {
                 case .success(let response):
                     favouriteMovieList.append(response)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    movieGroup.leave()
                 case .failure(let error):
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    
                     print(error)
+                    movieGroup.leave()
                 }
             }
         }
+        movieGroup.notify(queue: .main){
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            AppConfig.config.reloadFavouriteList = false
+        }
     }
-
+    
+    
+    @IBAction func trashBarButtonClicked(_ sender: UIBarButtonItem) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "confirm".localized(), message: "favourites_delete_list_warning".localized(), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "no".localized(), style: UIAlertAction.Style.cancel, handler: { action in
+                //do nothing
+            }))
+            alert.addAction(UIAlertAction(title: "yes".localized(), style: UIAlertAction.Style.destructive, handler: { action in
+                AppConfig.config.favouriteList.removeAll()
+                self.favouriteMovieList.removeAll()
+                self.tableView.reloadData()
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 //MARK: - TableView Data Source Methods
@@ -115,14 +147,33 @@ extension FavouritesViewController: UITableViewDelegate{
 //                //AlertManager.showLoadingIndicator(in: self)
 //                AlertManager.showTableViewLoadingIndicator(for: tableView, in: self)
 //
-//                movieService.getPopular(page: pageCounter){ result in
-//                    switch result {
-//                    case .success(let response):
-//                        self.pageCounter += 1
-//                        self.favouriteMovieList.append(contentsOf: response.results)
+//                let movieGroup = DispatchGroup()
+//
+//                let currentPageStart = AppConfig.config.MaxMovieCountPerPageFavouriteList * pageCounter
+//                var currentPageEnd = AppConfig.config.MaxMovieCountPerPageFavouriteList * (pageCounter + 1)
+//                if(currentPageEnd >= totalMovieCount){
+//                    currentPageEnd = totalMovieCount - 1
+//                }
+//
+//                for movieID in favouriteMovieIDList[currentPageStart...(currentPageEnd)]{
+//                    movieGroup.enter()
+//                    movieService.getMovieDetail(id: movieID , language: AppConfig.config.languageISO) { [self] result in
+//                        switch result {
+//                        case .success(let response):
+//                            favouriteMovieList.append(response)
+//                            movieGroup.leave()
+//                        case .failure(let error):
+//
+//                            print(error)
+//                            movieGroup.leave()
+//                        }
+//                    }
+//                }
+//                movieGroup.notify(queue: .main){
+//                    AlertManager.hideTableViewLoadingIndicator(for: tableView, in: self)
+//                    self.pageCounter += 1
+//                    DispatchQueue.main.async {
 //                        self.tableView.reloadData()
-//                    case .failure(let error):
-//                        print(error)
 //                    }
 //                }
 //            }

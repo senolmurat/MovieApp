@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Localize_Swift
 
 struct AlertManager{
     
@@ -51,16 +52,16 @@ struct AlertManager{
         
     static func showInfoAlertBox(for error: NSError , in controller: UIViewController , handler: ((UIAlertAction) -> Void)? ){
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: handler))
+            let alert = UIAlertController(title: "error".localized(), message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok".localized(), style: UIAlertAction.Style.default, handler: handler))
             controller.present(alert, animated: true, completion: nil)
         }
     }
     
-    static func showInfoAlertBox(with message: String , errorTitle : String = "Error" , in controller: UIViewController , handler: ((UIAlertAction) -> Void)? ){
+    static func showInfoAlertBox(with message: String , errorTitle : String = "error".localized() , in controller: UIViewController , handler: ((UIAlertAction) -> Void)? ){
         DispatchQueue.main.async {
             let alert = UIAlertController(title: errorTitle, message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: handler))
+            alert.addAction(UIAlertAction(title: "ok".localized(), style: UIAlertAction.Style.default, handler: handler))
             controller.present(alert, animated: true, completion: nil)
         }
     }

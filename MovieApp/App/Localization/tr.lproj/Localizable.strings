@@ -25,6 +25,13 @@
 "movies_tab_title" = "Filmler";
 "search_tab_title" = "Ara";
 "favourites_tab_title" = "Beğenilenler";
+"favourites_delete_list_warning" = "Beğenilenler listenizdeki filmleri silmek istediğinize emin misiniz ?";
 
 "hour" = "Saat";
 "minute" = "Dakika";
+
+"ok" = "Tamam";
+"error" = "Hata";
+"confirm" = "Onay";
+"yes" = "Evet";
+"no" = "Hayır";

@@ -25,6 +25,13 @@
 "movies_tab_title" = "Movies";
 "search_tab_title" = "Search";
 "favourites_tab_title" = "Favourites";
+"favourites_delete_list_warning" = "Are you sure you want to delete all the movies in your favourites list ?";
 
 "hour" = "Hour";
 "minute" = "Minute";
+
+"ok" = "Ok";
+"error" = "Error";
+"confirm" = "Confirmation";
+"yes" = "Yes";
+"no" = "No";

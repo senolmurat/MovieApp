@@ -14,8 +14,10 @@ class AppConfig{
     var favouriteList : [Int] = UserDefaults.standard.array(forKey: K.favouritedListKey) as! [Int]{
         didSet{
             UserDefaults.standard.set(favouriteList , forKey: K.favouritedListKey)
+            reloadFavouriteList = true
         }
     }
+    var reloadFavouriteList : Bool = true
     
     var genres : [Int : String] = [:]
     
@@ -29,6 +31,7 @@ class AppConfig{
     let originalImageURL : String = Bundle.main.infoDictionary?["ORIGINAL_IMAGE_URL"] as! String
     let MaxShowedCastCount : Int = Bundle.main.infoDictionary?["MaxShowedCastCount"] as? Int ?? 0
     let MaxRecommendedMovieCount : Int = Bundle.main.infoDictionary?["MaxRecommendedMovieCount"] as? Int ?? 0
+    let MaxMovieCountPerPageFavouriteList : Int = Bundle.main.infoDictionary?["MaxMovieCountPerPageFavouriteList"] as? Int ?? 0
     //TODO: Give errors if key not found in infoDictionary
     
     let defaultBackdropImage : String = "defaultBackdropImage"

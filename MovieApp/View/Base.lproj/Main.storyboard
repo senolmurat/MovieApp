@@ -715,7 +715,13 @@
                             <constraint firstItem="RZr-du-G6g" firstAttribute="trailing" secondItem="QGN-q3-eNy" secondAttribute="trailing" id="vBU-Ed-Hn0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mcZ-Vi-3dl"/>
+                    <navigationItem key="navigationItem" id="mcZ-Vi-3dl">
+                        <barButtonItem key="rightBarButtonItem" title="Delete All" image="trash.fill" catalog="system" id="StM-5B-Nrc">
+                            <connections>
+                                <action selector="trashBarButtonClicked:" destination="oDE-JH-9AN" id="6es-fq-idb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="RZr-du-G6g" id="AFn-6T-mHa"/>
                     </connections>
@@ -904,6 +910,7 @@
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="tablecells.fill" catalog="system" width="128" height="93"/>
+        <image name="trash.fill" catalog="system" width="121" height="128"/>
         <namedColor name="AppBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

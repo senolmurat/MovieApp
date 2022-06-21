@@ -182,8 +182,6 @@ class MovieDetailViewController: UIViewController {
             releaseDateLabel.text = "unknown".localized()
         }
         ratingLabel.text = String(movie.voteAverage)
-        //overviewLabel.text = movie.overview
-        //taglineLabel.text = movie.tagline
         
         if let overview = movie.overview{
             overviewLabel.text = overview
@@ -202,7 +200,7 @@ class MovieDetailViewController: UIViewController {
         originalTitleLabel.text = movie.originalTitle
         
         let currencyformatter = NumberFormatter()
-        currencyformatter.locale = Locale(identifier: "en_US") // Change this to another locale if you want to force a specific locale, otherwise this is redundant as the current locale is the default already
+        currencyformatter.locale = Locale(identifier: "en_US")
         currencyformatter.numberStyle = .currency
     
         budgetInfoLabel.text = (currencyformatter.string(from: movie.budget as NSNumber) ?? "not_available".localized())
