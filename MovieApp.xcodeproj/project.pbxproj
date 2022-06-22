@@ -138,7 +138,6 @@
 		6F1D0D19284503F100E24E53 /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
-				6F88DA822846550600A63818 /* Api */,
 				6F88DA812846550200A63818 /* App */,
 				6F88DA80284654F700A63818 /* Network */,
 				6F1D0D3928450AAE00E24E53 /* Controller */,
@@ -225,13 +224,6 @@
 				6FB60959284A0BDA0049C4E1 /* Extensions.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		6F88DA822846550600A63818 /* Api */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Api;
 			sourceTree = "<group>";
 		};
 		6F88DA852846553B00A63818 /* Services */ = {

@@ -19,7 +19,7 @@ class CastDetailViewController: UIViewController {
     var personID : Int?
     let personService = PersonService()
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
 
         if let personID = personID{

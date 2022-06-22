@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set([] , forKey: K.favouritedListKey)
         }
         
+        if(AppConfig.config.apikey.isEmpty){
+            fatalError("API KEY is not set correctly...")
+        }
+        
         GenreService().getMovieGenreList(language: AppConfig.config.languageISO, completion: { result in
             switch result {
             case .success(let response):
